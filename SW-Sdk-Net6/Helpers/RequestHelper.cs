@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Json;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using SW.Services;
 
 namespace SW.Helpers
 {
@@ -26,6 +28,13 @@ namespace SW.Helpers
             {
                 return new HttpClientHandler();
             }
+        }
+        internal static async Task<Dictionary<string, string>> SetupAuthHeaderAsync(Services.Services services)
+        {
+            var setup = await services.SetupAuthAsync();
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("Authorization", "bearer " + setup.Token);
+            return headers;
         }
     }
 }
