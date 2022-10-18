@@ -27,7 +27,7 @@ namespace SW.Services
         public string Proxy { get { return _proxy; } }
         public int ProxyPort { get { return _proxyPort; } }
         public DateTime ExpirationDate { get { return _expirationDate; } }
-        public Services(string url, string token, string proxy, int proxyPort)
+        public Services(string url, string token, int proxyPort, string proxy)
         {
             _url = url;
             _token = token;
@@ -35,7 +35,7 @@ namespace SW.Services
             _proxy = proxy;
             _proxyPort = proxyPort;
         }
-        public Services(string url, string user, string password, string proxy, int proxyPort)
+        public Services(string url, string user, string password, int proxyPort, string proxy)
         {
             _url = url;
             _user = user;
@@ -43,11 +43,11 @@ namespace SW.Services
             _proxy = proxy;
             _proxyPort = proxyPort;
         }
-        public async Task<Services> SetupRequestAsync()
+        public async Task<Services> SetupAuthAsync()
         {
             if(String.IsNullOrEmpty(Token) || DateTime.Now > ExpirationDate)
             {
-                Authentication.Authentication authentication = new Authentication.Authentication(Url, User, Password, Proxy, ProxyPort);
+                Authentication.Authentication authentication = new Authentication.Authentication(Url, User, Password, ProxyPort, Proxy);
                 var result = await authentication.ObtenerTokenAsync();
 
                 if(result != null && result.status.Equals("success"))
