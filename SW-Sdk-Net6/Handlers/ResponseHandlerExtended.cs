@@ -3,36 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
+using System.Net.Mime;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SW.Handlers
 {
     internal class ResponseHandlerExtended<T> where T : Response, new()
     {
-        internal async Task<T> PostResponseAsync(string url, string path, Dictionary<string, string> headers, HttpContent? content, HttpClientHandler proxy)
-        {
-            HttpResponseMessage result;
-            try
-            {
-                using (HttpClient client = new HttpClient(proxy, false))
-                {
-                    client.BaseAddress = new Uri(url);
-                    foreach (var header in headers)
-                    {
-                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
-                    }
-                    result = await client.PostAsync(path, content);
-                }
-
-                return await TryGetResponseAsync(result);
-            }
-            catch (HttpRequestException ex)
-            {
-                return GetExceptionResponse(ex);
-            }
-        }
-        private async Task<T> TryGetResponseAsync(HttpResponseMessage response)
+        internal async Task<T> TryGetResponseAsync(HttpResponseMessage response)
         {
             try
             {
@@ -47,7 +29,7 @@ namespace SW.Handlers
                 return GetExceptionResponse(response);
             }
         }
-        private T GetExceptionResponse(HttpRequestException ex)
+        internal T GetExceptionResponse(HttpRequestException ex)
         {
             return new T()
             {

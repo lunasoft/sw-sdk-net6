@@ -5,9 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Mime;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SW.Handlers
 {
@@ -18,13 +21,71 @@ namespace SW.Handlers
         {
             handler = new ResponseHandlerExtended<T>();
         }
+        private async Task<T> PostResponseAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy,
+            HttpContent? content = null)
+        {
+            HttpResponseMessage result;
+            try
+            {
+                using (HttpClient client = new HttpClient(proxy, false))
+                {
+                    client.BaseAddress = new Uri(url);
+                    foreach (var header in headers)
+                    {
+                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                    }
+                    result = await client.PostAsync(path, content);
+                }
+
+                return await handler.TryGetResponseAsync(result);
+            }
+            catch (HttpRequestException ex)
+            {
+                return handler.GetExceptionResponse(ex);
+            }
+        }
+        /// <summary>
+        /// POST No Body.
+        /// </summary>
+        /// <param name="url">Base Url.</param>
+        /// <param name="path">Path.</param>
+        /// <param name="headers">Headers.</param>
+        /// <param name="proxy">Proxy settings.</param>
+        /// <returns></returns>
         internal async Task<T> PostAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy)
         {
-            return await handler.PostResponseAsync(url, path, headers, null, proxy);
+            return await PostResponseAsync(url, path, headers, proxy);
         }
-        internal async Task<T> PostAsync(string url, string path, Dictionary<string, string> headers, HttpContent content, HttpClientHandler proxy)
+        /// <summary>
+        /// POST JSON, accepts custom Content-Type.
+        /// </summary>
+        /// <param name="url">Base Url.</param>
+        /// <param name="path">Path.</param>
+        /// <param name="headers">Headers.</param>
+        /// <param name="proxy">Proxy settings.</param>
+        /// <param name="content">Json String.</param>
+        /// <param name="contentType">Custom Content-Type, default: application/json</param>
+        /// <returns></returns>
+        internal async Task<T> PostAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy, string content, string contentType = null)
         {
-            return await handler.PostResponseAsync(url, path, headers, content, proxy);
+            var setContent = new StringContent(content, Encoding.UTF8, contentType ?? Application.Json);
+            return await PostResponseAsync(url, path, headers, proxy, setContent);
+        }
+        /// <summary>
+        /// POST Multipart Form.
+        /// </summary>
+        /// <param name="url">Base Url.</param>
+        /// <param name="path">Path.</param>
+        /// <param name="headers">Headers.</param>
+        /// <param name="proxy">Proxy settings.</param>
+        /// <param name="content">File Bytes.</param>
+        /// <returns></returns>
+        internal async Task<T> PostAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy, byte[] content)
+        {
+            var setContent = new MultipartFormDataContent();
+            var data = new ByteArrayContent(content);
+            setContent.Add(data, "xml", "xml");
+            return await PostResponseAsync(url, path, headers, proxy, setContent);
         }
     }
 }
