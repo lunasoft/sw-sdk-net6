@@ -16,7 +16,7 @@ namespace SW.Services.Authentication
         /// <param name="password"></param>
         /// <param name="proxyPort"></param>
         /// <param name="proxy"></param>
-        public Authentication(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxyPort, proxy)
+        public Authentication(string url, string user, string password, string proxy = null, int proxyPort = 0) : base(url, user, password, proxy, proxyPort)
         {
         }
         /// <summary>

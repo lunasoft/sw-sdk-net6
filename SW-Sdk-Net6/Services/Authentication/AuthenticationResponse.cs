@@ -23,7 +23,7 @@ namespace SW.Services.Authentication
             /// Vencimiento del token en formato timestamp.
             /// </summary>
             [DataMember]
-            public int expires_in { get; set; }
+            public long expires_in { get; set; }
         }
     }
 }

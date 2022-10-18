@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SW.Entities;
+using SW.Services.Authentication;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -29,7 +31,7 @@ namespace SW.Services
         {
             _url = url;
             _token = token;
-            _expirationDate = DateTime.Now.AddYears(_timeSession);
+            _expirationDate = DateTime.Now.AddHours(_timeSession);
             _proxy = proxy;
             _proxyPort = proxyPort;
         }
@@ -45,7 +47,14 @@ namespace SW.Services
         {
             if(String.IsNullOrEmpty(Token) || DateTime.Now > ExpirationDate)
             {
+                Authentication.Authentication authentication = new Authentication.Authentication(Url, User, Password, Proxy, ProxyPort);
+                var result = await authentication.ObtenerTokenAsync();
 
+                if(result != null && result.status.Equals("success"))
+                {
+                    _token = result.data.token;
+                    _expirationDate = DateTime.Now.AddHours(_timeSession);
+                }
             }
             return this;
         }
