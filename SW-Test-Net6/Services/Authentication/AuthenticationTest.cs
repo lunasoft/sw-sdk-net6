@@ -11,6 +11,7 @@ namespace SW.Test.Services.AuthenticationTest
     [TestClass]
     public class AuthenticationTest
     {
+        #region UT Success
         [TestMethod]
         public async Task Authenticate_Success()
         {
@@ -21,6 +22,8 @@ namespace SW.Test.Services.AuthenticationTest
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.token));
             Assert.IsTrue(response.data.expires_in > 0);
         }
+        #endregion
+        #region UT Error
         [TestMethod]
         public async Task Authenticate_WrongCredentials_Error()
         {
@@ -47,5 +50,6 @@ namespace SW.Test.Services.AuthenticationTest
             Assert.IsNotNull(response.message);
             Assert.IsNotNull(response.messageDetail);
         }
+        #endregion
     }
 }
