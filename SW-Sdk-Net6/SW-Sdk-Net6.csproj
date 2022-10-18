@@ -1,10 +1,39 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>SW_Sdk_Net6</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+  	  <AssemblyName>SW-sdk-Net6</AssemblyName>
+      <VersionPrefix>0.0.0.1</VersionPrefix>
+      <TargetFramework>net6.0</TargetFramework>
+      <RootNamespace>SW</RootNamespace>
+      <ImplicitUsings>enable</ImplicitUsings>
+      <Nullable>enable</Nullable>
+      <Title>SDK SW Sapien®</Title>
+      <VersionPrefix>0.0.0.1</VersionPrefix>
+      <Authors>SW Sapien</Authors>
+      <Company>SDK SW Sapien®</Company>
+      <Description>Librería para el consumo de los servicios web de SW sapien®.</Description>
+      <PackageProjectUrl></PackageProjectUrl>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
+      <RepositoryUrl>https://github.com/lunasoft/SW-sdk-Net6</RepositoryUrl>
+	  <RepositoryType>Git</RepositoryType>
+	  <RepositoryBranch>Master</RepositoryBranch>
+	  <Copyright>Copyright SW sapien®</Copyright>
+	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	  <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+	  <PackageIconUrl>https://sw.com.mx/images/logo.png</PackageIconUrl>
   </PropertyGroup>
-
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Services\Authentication\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta2" />
+  </ItemGroup>
 </Project>
