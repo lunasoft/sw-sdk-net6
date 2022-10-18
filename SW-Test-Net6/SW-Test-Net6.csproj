@@ -17,11 +17,35 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\Cfdi\" />
+    <Folder Include="Resources\Csd\" />
+    <Folder Include="Resources\Xslt\" />
     <Folder Include="Services\Authentication\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SW-Sdk-Net6\SW-Sdk-Net6.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\Cfdi\cfdi40.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Cfdi\cfdi40.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Csd\EKU9003173C9.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Csd\EKU9003173C9.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Csd\EKU9003173C9.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Xslt\cadenaoriginal_4_0.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

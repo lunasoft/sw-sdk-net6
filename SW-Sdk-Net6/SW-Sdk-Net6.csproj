@@ -22,9 +22,7 @@
 	  <PackageIconUrl>https://sw.com.mx/images/logo.png</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
     <Folder Include="Handlers\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Services\Authentication\" />
   </ItemGroup>
   <ItemGroup>
