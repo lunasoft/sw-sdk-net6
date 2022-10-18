@@ -11,21 +11,21 @@ namespace SW.Services.Authentication
         /// <summary>
         /// Crear una instancia de la clase Authentication.
         /// </summary>
-        /// <param name="url"></param>
-        /// <param name="user"></param>
-        /// <param name="password"></param>
-        /// <param name="proxyPort"></param>
-        /// <param name="proxy"></param>
-        public Authentication(string url, string user, string password, string proxy = null, int proxyPort = 0) : base(url, user, password, proxy, proxyPort)
+        /// <param name="url">URL base.</param>
+        /// <param name="user">Usuario.</param>
+        /// <param name="password">Contraseña.</param>
+        /// <param name="proxyPort">Puerto Proxy.</param>
+        /// <param name="proxy">Proxy.</param>
+        public Authentication(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxyPort, proxy)
         {
         }
         /// <summary>
-        /// Servicio para obtener el token de autenticación.
+        /// Servicio de Autenticación.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>AuthenticationResponse</returns>
         public async Task<AuthenticationResponse> ObtenerTokenAsync()
         {
-            return await GetToken();
+            return await GetTokenAsync();
         }
     }
 }

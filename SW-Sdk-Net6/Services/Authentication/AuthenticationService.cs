@@ -9,11 +9,11 @@ namespace SW.Services.Authentication
     public class AuthenticationService : Services
     {
         private AuthenticationResponseHandler _handler;
-        public AuthenticationService(string url, string user, string password, string proxy = null, int proxyPort = 0) : base(url, user, password, proxy, proxyPort)
+        public AuthenticationService(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxyPort, proxy)
         {
             _handler = new AuthenticationResponseHandler();
         }
-        internal async Task<AuthenticationResponse> GetToken()
+        internal async Task<AuthenticationResponse> GetTokenAsync()
         {
             try
             {
