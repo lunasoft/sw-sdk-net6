@@ -50,7 +50,7 @@ namespace SW.Services
                 Authentication.Authentication authentication = new Authentication.Authentication(Url, User, Password, ProxyPort, Proxy);
                 var result = await authentication.GenerateTokenAsync();
 
-                if(result != null && result.status.Equals("success"))
+                if(result != null && result.Status.Equals("success"))
                 {
                     _token = result.data.token;
                     _expirationDate = DateTime.Now.AddHours(_timeSession);
