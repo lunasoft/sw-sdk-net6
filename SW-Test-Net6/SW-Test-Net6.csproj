@@ -34,6 +34,15 @@
     <None Update="Resources\Cfdi\cfdi40.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\Cfdi\cfdi40_big.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Cfdi\cfdi40_special_char.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Cfdi\cfdi40_special_char.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Csd\EKU9003173C9.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

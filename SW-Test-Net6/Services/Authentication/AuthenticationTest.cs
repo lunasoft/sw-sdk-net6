@@ -16,7 +16,7 @@ namespace SW.Test.Services.AuthenticationTest
         public async Task Authenticate_Success()
         {
             Authentication auth = new Authentication("https://services.test.sw.com.mx", BuildHelper.User, BuildHelper.Password);
-            var response = await auth.ObtenerTokenAsync();
+            var response = await auth.GenerateTokenAsync();
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.token));
@@ -28,7 +28,7 @@ namespace SW.Test.Services.AuthenticationTest
         public async Task Authenticate_WrongCredentials_Error()
         {
             Authentication auth = new Authentication("https://services.test.sw.com.mx", BuildHelper.User, "12345");
-            var response = await auth.ObtenerTokenAsync();
+            var response = await auth.GenerateTokenAsync();
             Assert.IsTrue(response.status.Equals("error"));
             Assert.IsTrue(response.message.Equals("AU2000 - El usuario y/o contraseña son inválidos, no se puede autenticar el servicio."));
         }
@@ -36,7 +36,7 @@ namespace SW.Test.Services.AuthenticationTest
         public async Task Authenticate_InvalidUrl_Error()
         {
             Authentication auth = new Authentication(null, BuildHelper.User, BuildHelper.Password);
-            var response = await auth.ObtenerTokenAsync();
+            var response = await auth.GenerateTokenAsync();
             Assert.IsTrue(response.status.Equals("error"));
             Assert.IsNotNull(response.message);
             Assert.IsNotNull(response.messageDetail);
@@ -45,7 +45,7 @@ namespace SW.Test.Services.AuthenticationTest
         public async Task Authenticate_WrongUrl_Error()
         {
             Authentication auth = new Authentication("https://test.sw.com.mx", BuildHelper.User, BuildHelper.Password);
-            var response = await auth.ObtenerTokenAsync();
+            var response = await auth.GenerateTokenAsync();
             Assert.IsTrue(response.status.Equals("error"));
             Assert.IsNotNull(response.message);
             Assert.IsNotNull(response.messageDetail);
