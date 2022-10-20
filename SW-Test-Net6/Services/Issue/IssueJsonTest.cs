@@ -20,7 +20,7 @@ namespace SW.Test.Services.IssueTest
             IssueJson issue = new IssueJson(BuildHelper.UrlService, BuildHelper.Token);
             var json = await BuildHelper.GetCfdi("cfdi40.json");
             var response = await issue.StampV1Async(json);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
         }
@@ -30,7 +30,7 @@ namespace SW.Test.Services.IssueTest
             IssueJson issue = new IssueJson(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
             var json = await BuildHelper.GetCfdi("cfdi40.json");
             var response = await issue.StampV1Async(json);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
         }
@@ -40,7 +40,7 @@ namespace SW.Test.Services.IssueTest
             IssueJson issue = new IssueJson(BuildHelper.UrlService, BuildHelper.Token);
             var json = await BuildHelper.GetCfdi("cfdi40_special_char.json");
             var response = await issue.StampV1Async(json);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
         }
@@ -52,7 +52,7 @@ namespace SW.Test.Services.IssueTest
             IssueJson issue = new IssueJson(BuildHelper.UrlService, BuildHelper.Token);
             var json = await BuildHelper.GetCfdi("cfdi40.json");
             var response = await issue.StampV2Async(json);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
@@ -63,7 +63,7 @@ namespace SW.Test.Services.IssueTest
             IssueJson issue = new IssueJson(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
             var json = await BuildHelper.GetCfdi("cfdi40.json");
             var response = await issue.StampV2Async(json);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
@@ -74,7 +74,7 @@ namespace SW.Test.Services.IssueTest
             IssueJson issue = new IssueJson(BuildHelper.UrlService, BuildHelper.Token);
             var json = await BuildHelper.GetCfdi("cfdi40_special_char.json");
             var response = await issue.StampV2Async(json);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
@@ -87,7 +87,7 @@ namespace SW.Test.Services.IssueTest
             IssueJson issue = new IssueJson(BuildHelper.UrlService, BuildHelper.Token);
             var json = await BuildHelper.GetCfdi("cfdi40.json");
             var response = await issue.StampV3Async(json);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
         }
@@ -97,7 +97,7 @@ namespace SW.Test.Services.IssueTest
             IssueJson issue = new IssueJson(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
             var json = await BuildHelper.GetCfdi("cfdi40.json");
             var response = await issue.StampV3Async(json);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
         }
@@ -107,7 +107,7 @@ namespace SW.Test.Services.IssueTest
             IssueJson issue = new IssueJson(BuildHelper.UrlService, BuildHelper.Token);
             var json = await BuildHelper.GetCfdi("cfdi40_special_char.json");
             var response = await issue.StampV3Async(json);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
         }
@@ -119,7 +119,7 @@ namespace SW.Test.Services.IssueTest
             IssueJson issue = new IssueJson(BuildHelper.UrlService, BuildHelper.Token);
             var json = await BuildHelper.GetCfdi("cfdi40.json");
             var response = await issue.StampV4Async(json);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.qrCode));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.uuid));
@@ -137,7 +137,7 @@ namespace SW.Test.Services.IssueTest
             IssueJson issue = new IssueJson(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
             var json = await BuildHelper.GetCfdi("cfdi40.json");
             var response = await issue.StampV4Async(json);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.qrCode));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.uuid));
@@ -155,7 +155,7 @@ namespace SW.Test.Services.IssueTest
             IssueJson issue = new IssueJson(BuildHelper.UrlService, BuildHelper.Token);
             var json = await BuildHelper.GetCfdi("cfdi40_special_char.json");
             var response = await issue.StampV4Async(json);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.qrCode));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.uuid));

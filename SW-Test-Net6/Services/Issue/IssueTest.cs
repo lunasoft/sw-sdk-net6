@@ -21,7 +21,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV1Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
         }
@@ -31,7 +31,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV1Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
         }
@@ -41,7 +41,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV1Async(xml, true);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
         }
@@ -51,7 +51,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV1Async(xml, true);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
         }
@@ -61,7 +61,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40_big.xml");
             var response = await issue.StampV1Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
         }
@@ -71,7 +71,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml");
             var response = await issue.StampV1Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
         }
@@ -81,7 +81,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml", true);
             var response = await issue.StampV1Async(xml, true);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
         }
@@ -93,7 +93,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV2Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
@@ -104,7 +104,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV2Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
@@ -115,7 +115,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV2Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
@@ -126,7 +126,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV2Async(xml, true);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
@@ -138,7 +138,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40_big.xml");
             var response = await issue.StampV2Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
@@ -149,7 +149,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml");
             var response = await issue.StampV2Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
@@ -160,7 +160,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml", true);
             var response = await issue.StampV2Async(xml, true);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.tfd));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
@@ -173,7 +173,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV3Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
         }
@@ -183,7 +183,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV3Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
         }
@@ -193,7 +193,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV3Async(xml, true);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
         }
@@ -203,7 +203,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV3Async(xml, true);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
         }
@@ -214,7 +214,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV3Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
         }
@@ -224,7 +224,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml");
             var response = await issue.StampV3Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
         }
@@ -234,7 +234,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml", true);
             var response = await issue.StampV3Async(xml, true);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.cfdi));
         }
@@ -246,7 +246,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV4Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.qrCode));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.uuid));
@@ -264,7 +264,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV4Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.qrCode));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.uuid));
@@ -282,7 +282,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV4Async(xml, true);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.qrCode));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.uuid));
@@ -300,7 +300,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV4Async(xml, true);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.qrCode));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.uuid));
@@ -319,7 +319,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV4Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.qrCode));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.uuid));
@@ -337,7 +337,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml");
             var response = await issue.StampV4Async(xml);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.qrCode));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.uuid));
@@ -355,7 +355,7 @@ namespace SW.Test.Services.IssueTest
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
             var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml", true);
             var response = await issue.StampV4Async(xml, true);
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.qrCode));
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.uuid));

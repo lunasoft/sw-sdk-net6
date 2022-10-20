@@ -17,7 +17,7 @@ namespace SW.Test.Services.AuthenticationTest
         {
             Authentication auth = new Authentication("https://services.test.sw.com.mx", BuildHelper.User, BuildHelper.Password);
             var response = await auth.GenerateTokenAsync();
-            Assert.IsTrue(response.status.Equals("success"));
+            Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.data.token));
             Assert.IsTrue(response.data.expires_in > 0);
@@ -29,26 +29,26 @@ namespace SW.Test.Services.AuthenticationTest
         {
             Authentication auth = new Authentication("https://services.test.sw.com.mx", BuildHelper.User, "12345");
             var response = await auth.GenerateTokenAsync();
-            Assert.IsTrue(response.status.Equals("error"));
-            Assert.IsTrue(response.message.Equals("AU2000 - El usuario y/o contraseña son inválidos, no se puede autenticar el servicio."));
+            Assert.IsTrue(response.Status.Equals("error"));
+            Assert.IsTrue(response.Message.Equals("AU2000 - El usuario y/o contraseña son inválidos, no se puede autenticar el servicio."));
         }
         [TestMethod]
         public async Task Authenticate_InvalidUrl_Error()
         {
             Authentication auth = new Authentication(null, BuildHelper.User, BuildHelper.Password);
             var response = await auth.GenerateTokenAsync();
-            Assert.IsTrue(response.status.Equals("error"));
-            Assert.IsNotNull(response.message);
-            Assert.IsNotNull(response.messageDetail);
+            Assert.IsTrue(response.Status.Equals("error"));
+            Assert.IsNotNull(response.Message);
+            Assert.IsNotNull(response.MessageDetail);
         }
         [TestMethod]
         public async Task Authenticate_WrongUrl_Error()
         {
             Authentication auth = new Authentication("https://test.sw.com.mx", BuildHelper.User, BuildHelper.Password);
             var response = await auth.GenerateTokenAsync();
-            Assert.IsTrue(response.status.Equals("error"));
-            Assert.IsNotNull(response.message);
-            Assert.IsNotNull(response.messageDetail);
+            Assert.IsTrue(response.Status.Equals("error"));
+            Assert.IsNotNull(response.Message);
+            Assert.IsNotNull(response.MessageDetail);
         }
         #endregion
     }
