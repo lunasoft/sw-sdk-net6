@@ -11,18 +11,18 @@ namespace SW.Services.Cancelation
         /// <summary>
         /// RFC del emisor.
         /// </summary>
-        public string rfc { get; set; }
+        public string Rfc { get; set; }
         /// <summary>
         /// Folio del comprobante a cancelar.
         /// </summary>
-        public Guid uuid { get; set; }
+        public Guid Uuid { get; set; }
         /// <summary>
         /// Motivo de cancelación.
         /// </summary>
-        public string motivo { get; set; }
+        public string Motivo { get; set; }
         /// <summary>
         /// Folio de sustitucion.
         /// </summary>
-        public Guid? folioSustitucion { get; set; }
+        public Guid? FolioSustitucion { get; set; }
     }
 }

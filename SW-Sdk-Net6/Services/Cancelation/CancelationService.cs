@@ -26,8 +26,8 @@ namespace SW.Services.Cancelation
             {
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
-                path = String.Format("{0}/{1}/{2}/{3}/{4}", path, folio.rfc, folio.uuid.ToString(), folio.motivo,
-                    folio.folioSustitucion != null ? folio.folioSustitucion.ToString() : String.Empty);
+                path = String.Format("{0}/{1}/{2}/{3}/{4}", path, folio.Rfc, folio.Uuid.ToString(), folio.Motivo,
+                    folio.FolioSustitucion != null ? folio.FolioSustitucion.ToString() : String.Empty);
                 return await _handler.PostAsync(this.Url, path, headers, proxy);
             }
             catch (Exception ex)
@@ -83,10 +83,10 @@ namespace SW.Services.Cancelation
         {
             return new
             {
-                rfc = folio.rfc,
-                uuid = folio.uuid,
-                motivo = folio.motivo,
-                folioSustitucion = folio.folioSustitucion,
+                Rfc = folio.Rfc,
+                Uuid = folio.Uuid,
+                Motivo = folio.Motivo,
+                FolioSustitucion = folio.FolioSustitucion,
                 b64Cer = cer is null ? null : Convert.ToBase64String(cer),
                 b64Key = key is null ? null : Convert.ToBase64String(key),
                 b64Pfx = pfx is null ? null : Convert.ToBase64String(pfx),
