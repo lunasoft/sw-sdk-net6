@@ -48,7 +48,7 @@ namespace SW.Services
             if(String.IsNullOrEmpty(Token) || DateTime.Now > ExpirationDate)
             {
                 Authentication.Authentication authentication = new Authentication.Authentication(Url, User, Password, ProxyPort, Proxy);
-                var result = await authentication.ObtenerTokenAsync();
+                var result = await authentication.GenerateTokenAsync();
 
                 if(result != null && result.status.Equals("success"))
                 {

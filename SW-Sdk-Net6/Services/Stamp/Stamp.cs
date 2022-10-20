@@ -36,7 +36,7 @@ namespace SW.Services.Stamp
         /// <param name="xml">String del CFDI en formato XML.</param>
         /// <param name="isB64">Especifica si el XML esta en formato B64.</param>
         /// <returns>Respuesta V1 de timbrado.</returns>
-        public async Task<StampResponseV1> TimbrarV1Async(string xml, bool isB64 = false)
+        public async Task<StampResponseV1> StampV1Async(string xml, bool isB64 = false)
         {
             return await StampV1Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.stamp);
         }
@@ -46,7 +46,7 @@ namespace SW.Services.Stamp
         /// <param name="xml">String del CFDI en formato XML.</param>
         /// <param name="isB64">Especifica si el XML esta en formato B64.</param>
         /// <returns>Respuesta V2 de timbrado.</returns>
-        public async Task<StampResponseV2> TimbrarV2Async(string xml, bool isB64 = false)
+        public async Task<StampResponseV2> StampV2Async(string xml, bool isB64 = false)
         {
             return await StampV2Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.stamp);
         }
@@ -56,7 +56,7 @@ namespace SW.Services.Stamp
         /// <param name="xml">String del CFDI en formato XML.</param>
         /// <param name="isB64">Especifica si el XML esta en formato B64.</param>
         /// <returns>Respuesta V3 de timbrado.</returns>
-        public async Task<StampResponseV3> TimbrarV3Async(string xml, bool isB64 = false)
+        public async Task<StampResponseV3> StampV3Async(string xml, bool isB64 = false)
         {
             return await StampV3Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.stamp);
         }
@@ -66,7 +66,7 @@ namespace SW.Services.Stamp
         /// <param name="xml">String del CFDI en formato XML.</param>
         /// <param name="isB64">Especifica si el XML esta en formato B64.</param>
         /// <returns>Respuesta V4 de timbrado.</returns>
-        public async Task<StampResponseV4> TimbrarV4Async(string xml, bool isB64 = false)
+        public async Task<StampResponseV4> StampV4Async(string xml, bool isB64 = false)
         {
             return await StampV4Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.stamp);
         }

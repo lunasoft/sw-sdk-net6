@@ -23,7 +23,7 @@ namespace SW.Services.Authentication
         /// Servicio de Autenticación.
         /// </summary>
         /// <returns>AuthenticationResponse</returns>
-        public async Task<AuthenticationResponse> ObtenerTokenAsync()
+        public async Task<AuthenticationResponse> GenerateTokenAsync()
         {
             return await GetTokenAsync();
         }
