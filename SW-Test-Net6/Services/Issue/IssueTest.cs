@@ -19,7 +19,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV1_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV1Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -29,7 +29,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV1_Auth_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
-            var xml = await BuildHelper.GetXml("cfdi40.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV1Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -39,7 +39,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV1_B64_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40.xml", true);
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV1Async(xml, true);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -49,7 +49,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV1_B64_Auth_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
-            var xml = await BuildHelper.GetXml("cfdi40.xml", true);
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV1Async(xml, true);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -59,7 +59,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV1_BigXml_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40_big.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40_big.xml");
             var response = await issue.StampV1Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -69,7 +69,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV1_SpecialChar_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40_special_char.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml");
             var response = await issue.StampV1Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -79,7 +79,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV1_SpecialChar_B64_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40_special_char.xml", true);
+            var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml", true);
             var response = await issue.StampV1Async(xml, true);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -91,7 +91,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV2_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV2Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -102,7 +102,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV2_Auth_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
-            var xml = await BuildHelper.GetXml("cfdi40.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV2Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -113,7 +113,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV2_B64_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV2Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -124,7 +124,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV2_B64_Auth_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
-            var xml = await BuildHelper.GetXml("cfdi40.xml", true);
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV2Async(xml, true);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -136,7 +136,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV2_BigXml_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40_big.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40_big.xml");
             var response = await issue.StampV2Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -147,7 +147,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV2_SpecialChar_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40_special_char.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml");
             var response = await issue.StampV2Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -158,7 +158,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV2_SpecialChar_B64_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40_special_char.xml", true);
+            var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml", true);
             var response = await issue.StampV2Async(xml, true);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -171,7 +171,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV3_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV3Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -181,7 +181,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV3_Auth_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
-            var xml = await BuildHelper.GetXml("cfdi40.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV3Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -191,7 +191,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV3_B64_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40.xml", true);
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV3Async(xml, true);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -201,7 +201,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV3_B64_Auth_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
-            var xml = await BuildHelper.GetXml("cfdi40.xml", true);
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV3Async(xml, true);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -212,7 +212,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV3_BigXml_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV3Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -222,7 +222,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV3_SpecialChar_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40_special_char.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml");
             var response = await issue.StampV3Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -232,7 +232,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV3_SpecialChar_B64_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40_special_char.xml", true);
+            var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml", true);
             var response = await issue.StampV3Async(xml, true);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -244,7 +244,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV4_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV4Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -262,7 +262,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV4_Auth_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
-            var xml = await BuildHelper.GetXml("cfdi40.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV4Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -280,7 +280,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV4_B64_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40.xml", true);
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV4Async(xml, true);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -298,7 +298,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV4_B64_Auth_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
-            var xml = await BuildHelper.GetXml("cfdi40.xml", true);
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml", true);
             var response = await issue.StampV4Async(xml, true);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -317,7 +317,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV4_BigXml_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40.xml");
             var response = await issue.StampV4Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -335,7 +335,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV4_SpecialChar_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40_special_char.xml");
+            var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml");
             var response = await issue.StampV4Async(xml);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
@@ -353,7 +353,7 @@ namespace SW.Test.Services.IssueTest
         public async Task IssueV4_SpecialChar_B64_Success()
         {
             var issue = new Issue(BuildHelper.UrlService, BuildHelper.Token);
-            var xml = await BuildHelper.GetXml("cfdi40_special_char.xml", true);
+            var xml = await BuildHelper.GetCfdi("cfdi40_special_char.xml", true);
             var response = await issue.StampV4Async(xml, true);
             Assert.IsTrue(response.status.Equals("success"));
             Assert.IsNotNull(response.data);
