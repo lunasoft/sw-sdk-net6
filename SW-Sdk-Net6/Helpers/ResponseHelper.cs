@@ -1,4 +1,5 @@
 ﻿using SW.Services.Authentication;
+using SW.Services.Cancelation;
 using SW.Services.IssueJson;
 using SW.Services.Stamp;
 using System;
@@ -50,6 +51,15 @@ namespace SW.Helpers
         internal static StampResponseV4 ToStampResponseV4(Exception ex)
         {
             return new StampResponseV4()
+            {
+                status = "error",
+                message = ex.Message,
+                messageDetail = GetErrorDetail(ex)
+            };
+        }
+        internal static CancelationResponse ToCancelationResponse(Exception ex)
+        {
+            return new CancelationResponse()
             {
                 status = "error",
                 message = ex.Message,
