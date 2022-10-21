@@ -9,7 +9,7 @@ namespace SW.Helpers
 {
     internal enum StampAction
     {
-        issue,
-        stamp
+        Issue,
+        Stamp
     }
 }

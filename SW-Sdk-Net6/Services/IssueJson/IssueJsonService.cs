@@ -12,8 +12,8 @@ namespace SW.Services.IssueJson
 {
     public class IssueJsonService : Services
     {
-        private string path = "/v3/cfdi33/issue/json";
-        private string contentType = "application/jsontoxml";
+        private string _path = "/v3/cfdi33/issue/json";
+        private string _contentType = "application/jsontoxml";
         public IssueJsonService(string url, string user, string password, int proxyPort, string proxy) : base (url, user, password, proxyPort, proxy)
         {
         }
@@ -27,7 +27,7 @@ namespace SW.Services.IssueJson
             {
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await handler.PostAsync(this.Url, String.Format("{0}/{1}", path, "v1"), headers, proxy, json, contentType);
+                return await handler.PostAsync(this.Url, String.Format("{0}/{1}", _path, "v1"), headers, proxy, json, _contentType);
 
             }
             catch(Exception ex)
@@ -42,7 +42,7 @@ namespace SW.Services.IssueJson
             {
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await handler.PostAsync(this.Url, String.Format("{0}/{1}", path, "v2"), headers, proxy, json, contentType);
+                return await handler.PostAsync(this.Url, String.Format("{0}/{1}", _path, "v2"), headers, proxy, json, _contentType);
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace SW.Services.IssueJson
             {
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await handler.PostAsync(this.Url, String.Format("{0}/{1}", path, "v3"), headers, proxy, json, contentType);
+                return await handler.PostAsync(this.Url, String.Format("{0}/{1}", _path, "v3"), headers, proxy, json, _contentType);
             }
             catch (Exception ex)
             {
@@ -70,7 +70,7 @@ namespace SW.Services.IssueJson
             {
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await handler.PostAsync(this.Url, String.Format("{0}/{1}", path, "v4"), headers, proxy, json, contentType);
+                return await handler.PostAsync(this.Url, String.Format("{0}/{1}", _path, "v4"), headers, proxy, json, _contentType);
             }
             catch (Exception ex)
             {

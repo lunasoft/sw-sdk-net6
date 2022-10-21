@@ -11,7 +11,7 @@ namespace SW.Services.Stamp
 {
     public class StampService : Services
     {
-        string path = "/cfdi33";
+        string _path = "/cfdi33";
         public StampService(string url, string token, int proxyPort, string proxy) : base (url, token, proxyPort, proxy)
         {
         }
@@ -23,10 +23,10 @@ namespace SW.Services.Stamp
             StampResponseHandlerV1 handler = new StampResponseHandlerV1();
             try
             {
-                path = String.Format("{0}/{1}/{2}/{3}", path, action, "v1", isB64 ? "b64" : String.Empty);
+                _path = String.Format("{0}/{1}/{2}/{3}", _path, action, "v1", isB64 ? "b64" : String.Empty);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await handler.PostAsync(this.Url, path, headers, proxy, xml);
+                return await handler.PostAsync(this.Url, _path, headers, proxy, xml);
             }
             catch (Exception ex)
             {
@@ -38,10 +38,10 @@ namespace SW.Services.Stamp
             StampResponseHandlerV2 handler = new StampResponseHandlerV2();
             try
             {
-                path = String.Format("{0}/{1}/{2}/{3}", path, action, "v2", isB64 ? "b64" : String.Empty);
+                _path = String.Format("{0}/{1}/{2}/{3}", _path, action, "v2", isB64 ? "b64" : String.Empty);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await handler.PostAsync(this.Url, path, headers, proxy, xml);
+                return await handler.PostAsync(this.Url, _path, headers, proxy, xml);
             }
             catch (Exception ex)
             {
@@ -53,10 +53,10 @@ namespace SW.Services.Stamp
             StampResponseHandlerV3 handler = new StampResponseHandlerV3();
             try
             {
-                path = String.Format("{0}/{1}/{2}/{3}", path, action, "v3", isB64 ? "b64" : String.Empty);
+                _path = String.Format("{0}/{1}/{2}/{3}", _path, action, "v3", isB64 ? "b64" : String.Empty);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await handler.PostAsync(this.Url, path, headers, proxy, xml);
+                return await handler.PostAsync(this.Url, _path, headers, proxy, xml);
             }
             catch (Exception ex)
             {
@@ -68,10 +68,10 @@ namespace SW.Services.Stamp
             StampResponseHandlerV4 handler = new StampResponseHandlerV4();
             try
             {
-                path = String.Format("{0}/{1}/{2}/{3}", path, action, "v4", isB64 ? "b64" : String.Empty);
+                _path = String.Format("{0}/{1}/{2}/{3}", _path, action, "v4", isB64 ? "b64" : String.Empty);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await handler.PostAsync(this.Url, path, headers, proxy, xml);
+                return await handler.PostAsync(this.Url, _path, headers, proxy, xml);
             }
             catch (Exception ex)
             {

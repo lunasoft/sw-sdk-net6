@@ -39,7 +39,7 @@ namespace SW.Services.Issue
         /// <returns>Respuesta V1 de timbrado.</returns>    
         public async Task<StampResponseV1> StampV1Async(string xml, bool isB64 = false)
         {
-            return await StampV1Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.issue);
+            return await StampV1Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Issue);
         }
         /// <summary>
         /// Servicio de Emision Timbrado de un CFDI en formato XML.
@@ -49,7 +49,7 @@ namespace SW.Services.Issue
         /// <returns>Respuesta V2 de timbrado.</returns> 
         public async Task<StampResponseV2> StampV2Async(string xml, bool isB64 = false)
         {
-            return await StampV2Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.issue);
+            return await StampV2Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Issue);
         }
         /// <summary>
         /// Servicio de Emision Timbrado de un CFDI en formato XML.
@@ -59,7 +59,7 @@ namespace SW.Services.Issue
         /// <returns>Respuesta V3 de timbrado.</returns> 
         public async Task<StampResponseV3> StampV3Async(string xml, bool isB64 = false)
         {
-            return await StampV3Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.issue);
+            return await StampV3Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Issue);
         }
         /// <summary>
         /// Servicio de Emision Timbrado de un CFDI en formato XML.
@@ -69,7 +69,7 @@ namespace SW.Services.Issue
         /// <returns>Respuesta V4s de timbrado.</returns> 
         public async Task<StampResponseV4> StampV4Async(string xml, bool isB64 = false)
         {
-            return await StampV4Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.issue);
+            return await StampV4Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Issue);
         }
     }
 }

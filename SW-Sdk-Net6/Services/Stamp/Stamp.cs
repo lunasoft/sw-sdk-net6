@@ -38,7 +38,7 @@ namespace SW.Services.Stamp
         /// <returns>Respuesta V1 de timbrado.</returns>
         public async Task<StampResponseV1> StampV1Async(string xml, bool isB64 = false)
         {
-            return await StampV1Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.stamp);
+            return await StampV1Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp);
         }
         /// <summary>
         /// Servicio de timbrado de un XML sellado con respuesta v2.
@@ -48,7 +48,7 @@ namespace SW.Services.Stamp
         /// <returns>Respuesta V2 de timbrado.</returns>
         public async Task<StampResponseV2> StampV2Async(string xml, bool isB64 = false)
         {
-            return await StampV2Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.stamp);
+            return await StampV2Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp);
         }
         /// <summary>
         /// Servicio de timbrado de un XML sellado con respuesta v3.
@@ -58,7 +58,7 @@ namespace SW.Services.Stamp
         /// <returns>Respuesta V3 de timbrado.</returns>
         public async Task<StampResponseV3> StampV3Async(string xml, bool isB64 = false)
         {
-            return await StampV3Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.stamp);
+            return await StampV3Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp);
         }
         /// <summary>
         /// Servicio de timbrado de un XML sellado con respuesta v4.
@@ -68,7 +68,7 @@ namespace SW.Services.Stamp
         /// <returns>Respuesta V4 de timbrado.</returns>
         public async Task<StampResponseV4> StampV4Async(string xml, bool isB64 = false)
         {
-            return await StampV4Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.stamp);
+            return await StampV4Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp);
         }
     }
 }
