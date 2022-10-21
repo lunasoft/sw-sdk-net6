@@ -1,16 +1,11 @@
 ﻿using Newtonsoft.Json;
 using SW.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SW.Services.Cancelation
 {
     public class CancelationService : Services
     {
-        private CancelationResponseHandler _handler;
+        private readonly CancelationResponseHandler _handler;
         private string path = "/cfdi33/cancel";
         public CancelationService(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxyPort, proxy)
         {
@@ -79,18 +74,18 @@ namespace SW.Services.Cancelation
                 return _handler.HandleException(ex);
             }
         }
-        private Object CancelationRequestBody(CancelationRequest folio, byte[] cer, byte[] key, byte[] pfx, string password)
+        private static Object CancelationRequestBody(CancelationRequest folio, byte[] cer, byte[] key, byte[] pfx, string password)
         {
             return new
             {
-                Rfc = folio.Rfc,
-                Uuid = folio.Uuid,
-                Motivo = folio.Motivo,
-                FolioSustitucion = folio.FolioSustitucion,
+                folio.Rfc,
+                folio.Uuid,
+                folio.Motivo,
+                folio.FolioSustitucion,
                 b64Cer = cer is null ? null : Convert.ToBase64String(cer),
                 b64Key = key is null ? null : Convert.ToBase64String(key),
                 b64Pfx = pfx is null ? null : Convert.ToBase64String(pfx),
-                password = password,
+                password,
             };
         }
     }

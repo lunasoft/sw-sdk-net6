@@ -17,7 +17,7 @@ namespace SW.Helpers
         {
             if (!string.IsNullOrEmpty(proxy))
             {
-                var httpClientHandler = new HttpClientHandler
+                HttpClientHandler httpClientHandler = new ()
                 {
                     Proxy = new WebProxy(string.Format("{0}:{1}", proxy, proxyPort), false),
                     UseProxy = true
@@ -32,8 +32,10 @@ namespace SW.Helpers
         internal static async Task<Dictionary<string, string>> SetupAuthHeaderAsync(Services.Services services)
         {
             var setup = await services.SetupAuthAsync();
-            Dictionary<string, string> headers = new Dictionary<string, string>();
-            headers.Add("Authorization", "bearer " + setup.Token);
+            Dictionary<string, string> headers = new()
+            {
+                { "Authorization", "bearer " + setup.Token }
+            };
             return headers;
         }
     }

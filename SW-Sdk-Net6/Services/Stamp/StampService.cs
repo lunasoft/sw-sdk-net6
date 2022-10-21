@@ -1,11 +1,4 @@
 ﻿using SW.Helpers;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Collections.Specialized.BitVector32;
 
 namespace SW.Services.Stamp
 {
@@ -35,7 +28,7 @@ namespace SW.Services.Stamp
         }
         internal async Task<StampResponseV2> StampV2Async(byte[] xml, bool isB64, StampAction action)
         {
-            StampResponseHandlerV2 handler = new StampResponseHandlerV2();
+            StampResponseHandlerV2 handler = new ();
             try
             {
                 _path = String.Format("{0}/{1}/{2}/{3}", _path, action, "v2", isB64 ? "b64" : String.Empty);
@@ -50,7 +43,7 @@ namespace SW.Services.Stamp
         }
         internal async Task<StampResponseV3> StampV3Async(byte[] xml, bool isB64, StampAction action)
         {
-            StampResponseHandlerV3 handler = new StampResponseHandlerV3();
+            StampResponseHandlerV3 handler = new ();
             try
             {
                 _path = String.Format("{0}/{1}/{2}/{3}", _path, action, "v3", isB64 ? "b64" : String.Empty);
@@ -65,7 +58,7 @@ namespace SW.Services.Stamp
         }
         internal async Task<StampResponseV4> StampV4Async(byte[] xml, bool isB64, StampAction action)
         {
-            StampResponseHandlerV4 handler = new StampResponseHandlerV4();
+            StampResponseHandlerV4 handler = new ();
             try
             {
                 _path = String.Format("{0}/{1}/{2}/{3}", _path, action, "v4", isB64 ? "b64" : String.Empty);

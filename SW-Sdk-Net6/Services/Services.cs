@@ -27,6 +27,7 @@ namespace SW.Services
         internal string? Proxy { get { return _proxy; } }
         internal int ProxyPort { get { return _proxyPort; } }
         internal DateTime ExpirationDate { get { return _expirationDate; } }
+
         public Services(string url, string token, int proxyPort, string proxy)
         {
             _url = url;
@@ -47,7 +48,7 @@ namespace SW.Services
         {
             if(String.IsNullOrEmpty(Token) || DateTime.Now > ExpirationDate)
             {
-                Authentication.Authentication authentication = new Authentication.Authentication(Url, User, Password, ProxyPort, Proxy);
+                Authentication.Authentication authentication = new(Url, User, Password, ProxyPort, Proxy);
                 var result = await authentication.GenerateTokenAsync();
 
                 if(result != null && result.Status.Equals("success"))

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SW.Services.Authentication
+﻿namespace SW.Services.Authentication
 {
     public class Authentication : AuthenticationService
     {
