@@ -52,7 +52,7 @@ namespace SW.Services
 
                 if(result != null && result.Status.Equals("success"))
                 {
-                    _token = result.data.token;
+                    _token = result.Data.Token;
                     _expirationDate = DateTime.Now.AddHours(_timeSession);
                 }
             }

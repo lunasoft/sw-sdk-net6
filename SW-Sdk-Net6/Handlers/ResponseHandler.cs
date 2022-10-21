@@ -16,10 +16,10 @@ namespace SW.Handlers
 {
     internal class ResponseHandler<T> where T : Response, new() 
     {
-        private ResponseHandlerExtended<T> handler;
+        private ResponseHandlerExtended<T> _handler;
         internal ResponseHandler()
         {
-            handler = new ResponseHandlerExtended<T>();
+            _handler = new ResponseHandlerExtended<T>();
         }
         private async Task<T> PostResponseAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy,
             HttpContent? content = null)
@@ -37,11 +37,11 @@ namespace SW.Handlers
                     result = await client.PostAsync(path, content);
                 }
 
-                return await handler.TryGetResponseAsync(result);
+                return await _handler.TryGetResponseAsync(result);
             }
             catch (HttpRequestException ex)
             {
-                return handler.GetExceptionResponse(ex);
+                return _handler.GetExceptionResponse(ex);
             }
         }
         /// <summary>

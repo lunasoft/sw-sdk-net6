@@ -33,18 +33,18 @@ namespace SW.Handlers
         {
             return new T()
             {
-                message = ex.Message,
-                status = "error",
-                messageDetail = ex.StackTrace
+                Message = ex.Message,
+                Status = "error",
+                MessageDetail = ex.StackTrace
             };
         }
         private T GetExceptionResponse(HttpResponseMessage response)
         {
             return new T()
             {
-                message = ((int)response.StatusCode).ToString(),
-                status = "error",
-                messageDetail = response.ReasonPhrase
+                Message = ((int)response.StatusCode).ToString(),
+                Status = "error",
+                MessageDetail = response.ReasonPhrase
             };
         }
     }
