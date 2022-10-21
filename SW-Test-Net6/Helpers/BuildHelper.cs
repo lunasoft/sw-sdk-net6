@@ -20,7 +20,7 @@ namespace SW.Test.Helpers
         internal static string Rfc = "EKU9003173C9";
 
 
-        internal static async Task<string> GetCfdi(string fileName)
+        internal static async Task<string> GetCfdiJson(string fileName)
         {
             var cfdi = await File.ReadAllTextAsync(String.Format(@"Resources\Cfdi\{0}", fileName), Encoding.UTF8);
             var json = JObject.Parse(cfdi);

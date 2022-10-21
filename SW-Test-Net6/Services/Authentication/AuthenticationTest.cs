@@ -18,9 +18,9 @@ namespace SW.Test.Services.AuthenticationTest
             Authentication auth = new Authentication("https://services.test.sw.com.mx", BuildHelper.User, BuildHelper.Password);
             var response = await auth.GenerateTokenAsync();
             Assert.IsTrue(response.Status.Equals("success"));
-            Assert.IsNotNull(response.data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.data.token));
-            Assert.IsTrue(response.data.expires_in > 0);
+            Assert.IsNotNull(response.Data);
+            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Token));
+            Assert.IsTrue(response.Data.Expires_in > 0);
         }
         #endregion
         #region UT Error
