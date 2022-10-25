@@ -1,29 +1,24 @@
 ﻿using SW.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SW.Services.Authentication
 {
     public class AuthenticationResponse : Response
     {
         [DataMember]
-        public Data data { get; set; }
-        public partial class Data
+        public AuthData Data { get; set; }
+        public partial class AuthData
         {
             /// <summary>
             /// Token de autenticación.
             /// </summary>
             [DataMember]
-            public string token { get; set; }
+            public string Token { get; set; }
             /// <summary>
             /// Vencimiento del token en formato timestamp.
             /// </summary>
             [DataMember]
-            public long expires_in { get; set; }
+            public long Expires_in { get; set; }
         }
     }
 }

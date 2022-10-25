@@ -20,13 +20,14 @@ namespace SW.Services
         private DateTime _expirationDate;
         private int _timeSession = 2;
 
-        public string Token { get { return _token; } }
-        public string Url { get { return _url; } }
-        public string User { get { return _user; } }
-        public string Password { get { return _password; } }
-        public string Proxy { get { return _proxy; } }
-        public int ProxyPort { get { return _proxyPort; } }
-        public DateTime ExpirationDate { get { return _expirationDate; } }
+        internal string Token { get { return _token; } }
+        internal string Url { get { return _url; } }
+        internal string User { get { return _user; } }
+        internal string Password { get { return _password; } }
+        internal string? Proxy { get { return _proxy; } }
+        internal int ProxyPort { get { return _proxyPort; } }
+        internal DateTime ExpirationDate { get { return _expirationDate; } }
+
         public Services(string url, string token, int proxyPort, string proxy)
         {
             _url = url;
@@ -43,16 +44,16 @@ namespace SW.Services
             _proxy = proxy;
             _proxyPort = proxyPort;
         }
-        public async Task<Services> SetupAuthAsync()
+        internal async Task<Services> SetupAuthAsync()
         {
             if(String.IsNullOrEmpty(Token) || DateTime.Now > ExpirationDate)
             {
-                Authentication.Authentication authentication = new Authentication.Authentication(Url, User, Password, ProxyPort, Proxy);
+                Authentication.Authentication authentication = new(Url, User, Password, ProxyPort, Proxy);
                 var result = await authentication.GenerateTokenAsync();
 
-                if(result != null && result.status.Equals("success"))
+                if(result != null && result.Status.Equals("success"))
                 {
-                    _token = result.data.token;
+                    _token = result.Data.Token;
                     _expirationDate = DateTime.Now.AddHours(_timeSession);
                 }
             }

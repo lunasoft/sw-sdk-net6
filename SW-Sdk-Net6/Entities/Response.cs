@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace SW.Entities
 {
@@ -11,10 +6,10 @@ namespace SW.Entities
     public class Response
     {
         [DataMember]
-        public string status { get; set; }
+        public string Status { get; set; }
         [DataMember]
-        public string message { get; set; }
+        public string Message { get; set; }
         [DataMember]
-        public string messageDetail { get; set; }
+        public string MessageDetail { get; set; }
     }
 }

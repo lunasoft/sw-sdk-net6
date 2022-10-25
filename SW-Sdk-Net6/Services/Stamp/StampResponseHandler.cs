@@ -1,11 +1,5 @@
 ﻿using SW.Handlers;
 using SW.Helpers;
-using SW.Services.Authentication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SW.Services.Stamp
 {

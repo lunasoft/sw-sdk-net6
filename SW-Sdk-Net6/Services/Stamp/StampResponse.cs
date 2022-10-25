@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 using SW.Entities;
 
 namespace SW.Services.Stamp
@@ -12,63 +7,63 @@ namespace SW.Services.Stamp
     public class StampResponseV1 : Response
     {
         [DataMember]
-        public DataResponseV1 data { get; set; }
+        public DataResponseV1 Data { get; set; }
     }
     [DataContract]
     public class StampResponseV2 : Response
     {
         [DataMember]
-        public DataResponseV2 data { get; set; }
+        public DataResponseV2 Data { get; set; }
     }
     [DataContract]
     public class StampResponseV3 : Response
     {
         [DataMember]
-        public DataResponseV3 data { get; set; }
+        public DataResponseV3 Data { get; set; }
     }
     [DataContract]
     public class StampResponseV4 : Response 
     {
         [DataMember]
-        public DataResponseV4 data { get; set; }
+        public DataResponseV4 Data { get; set; }
 
     }
     public partial class DataResponseV1
     {
         [DataMember]
-        public string tfd { get; set; }
+        public string Tfd { get; set; }
     }
     public partial class DataResponseV2
     {
         [DataMember]
-        public string tfd { get; set; }
+        public string Tfd { get; set; }
         [DataMember]
-        public string cfdi { get; set; }
+        public string Cfdi { get; set; }
     }
     public partial class DataResponseV3
     {
         [DataMember]
-        public string cfdi { get; set; }
+        public string Cfdi { get; set; }
     }
     public partial class DataResponseV4
     {
         [DataMember]
-        public string cadenaOriginalSAT { get; set; }
+        public string CadenaOriginalSAT { get; set; }
         [DataMember]
-        public string noCertificadoSAT { get; set; }
+        public string NoCertificadoSAT { get; set; }
         [DataMember]
-        public string noCertificadoCFDI { get; set; }
+        public string NoCertificadoCFDI { get; set; }
         [DataMember]
-        public string uuid { get; set; }
+        public string Uuid { get; set; }
         [DataMember]
-        public string selloSAT { get; set; }
+        public string SelloSAT { get; set; }
         [DataMember]
-        public string selloCFDI { get; set; }
+        public string SelloCFDI { get; set; }
         [DataMember]
-        public string fechaTimbrado { get; set; }
+        public string FechaTimbrado { get; set; }
         [DataMember]
-        public string qrCode { get; set; }
+        public string QrCode { get; set; }
         [DataMember]
-        public string cfdi { get; set; }
+        public string Cfdi { get; set; }
     }
 }

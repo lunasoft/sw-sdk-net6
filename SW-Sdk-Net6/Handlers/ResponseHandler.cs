@@ -1,25 +1,15 @@
 ﻿using SW.Entities;
-using SW.Helpers;
-using SW.Services.Authentication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Mime;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace SW.Handlers
 {
     internal class ResponseHandler<T> where T : Response, new() 
     {
-        private ResponseHandlerExtended<T> handler;
+        private ResponseHandlerExtended<T> _handler;
         internal ResponseHandler()
         {
-            handler = new ResponseHandlerExtended<T>();
+            _handler = new ResponseHandlerExtended<T>();
         }
         private async Task<T> PostResponseAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy,
             HttpContent? content = null)
@@ -37,11 +27,11 @@ namespace SW.Handlers
                     result = await client.PostAsync(path, content);
                 }
 
-                return await handler.TryGetResponseAsync(result);
+                return await _handler.TryGetResponseAsync(result);
             }
             catch (HttpRequestException ex)
             {
-                return handler.GetExceptionResponse(ex);
+                return _handler.GetExceptionResponse(ex);
             }
         }
         /// <summary>
