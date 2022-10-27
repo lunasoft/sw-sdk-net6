@@ -1,24 +1,25 @@
-﻿using Newtonsoft.Json;
-using SW.Helpers;
+﻿using SW.Helpers;
 
-namespace SW.Services.Cancelation
+namespace SW.Services.Cancellation
 {
-    public class CancelationService : Services
+    public class CancellationService : Services
     {
-        private readonly CancelationResponseHandler _handler;
+        private readonly CancellationResponseHandler _handler;
         private readonly string _path = "/cfdi33/cancel";
-        public CancelationService(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxyPort, proxy)
+        public CancellationService(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxyPort, proxy)
         {
-            _handler = new CancelationResponseHandler();
+            _handler = new CancellationResponseHandler();
         }
-        public CancelationService(string url, string token, int proxyPort = 0, string proxy = null) : base(url, token, proxyPort, proxy)
+        public CancellationService(string url, string token, int proxyPort = 0, string proxy = null) : base(url, token, proxyPort, proxy)
         {
-            _handler = new CancelationResponseHandler();
+            _handler = new CancellationResponseHandler();
         }
-        internal async Task<CancelationResponse> CancelationAsync(CancelationRequest folio)
+        internal async Task<CancellationResponse> CancellationAsync(CancellationRequest folio)
         {
             try
             {
+                if(!ValidationHelper.ValidateCancellationRequest(folio, out string message))
+                    throw new Exception(message);
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 string path = String.Format("{0}/{1}/{2}/{3}/{4}", _path, folio.Rfc, folio.Uuid.ToString(), folio.Motivo,
@@ -30,37 +31,39 @@ namespace SW.Services.Cancelation
                 return _handler.HandleException(ex);
             }
         }
-        internal async Task<CancelationResponse> CancelationAsync(CancelationRequest folio, byte[] cer, byte[] key, string password)
+        internal async Task<CancellationResponse> CancellationAsync(CancellationRequest folio, byte[] cer, byte[] key, string password)
         {
             try
             {
+                if (!ValidationHelper.ValidateCancellationRequest(folio, out string message))
+                    throw new Exception(message);
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 string path = String.Format("{0}/{1}", _path, "csd");
-                var body = CancelationRequestBody(folio, cer, key, null, password);
-                return await _handler.PostAsync(this.Url, path, headers, proxy, JsonConvert.SerializeObject(body));
+                return await _handler.PostAsync(this.Url, path, headers, proxy, JsonBodyHelper.SerializeCancellation(folio, password, cer, key, null));
             }
             catch (Exception ex)
             {
                 return _handler.HandleException(ex);
             }
         }
-        internal async Task<CancelationResponse> CancelationAsync(CancelationRequest folio, byte[] pfx, string password)
+        internal async Task<CancellationResponse> CancellationAsync(CancellationRequest folio, byte[] pfx, string password)
         {
             try
             {
+                if (!ValidationHelper.ValidateCancellationRequest(folio, out string message))
+                    throw new Exception(message);
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 string path = String.Format("{0}/{1}", _path, "pfx");
-                var body = CancelationRequestBody(folio, null, null, pfx, password);
-                return await _handler.PostAsync(this.Url, path, headers, proxy, JsonConvert.SerializeObject(body));
+                return await _handler.PostAsync(this.Url, path, headers, proxy, JsonBodyHelper.SerializeCancellation(folio, password, null, null, pfx));
             }
             catch (Exception ex)
             {
                 return _handler.HandleException(ex);
             }
         }
-        internal async Task<CancelationResponse> CancelationAsync(byte[] xml)
+        internal async Task<CancellationResponse> CancellationAsync(byte[] xml)
         {
             try
             {
@@ -73,20 +76,6 @@ namespace SW.Services.Cancelation
             {
                 return _handler.HandleException(ex);
             }
-        }
-        private static Object CancelationRequestBody(CancelationRequest folio, byte[] cer, byte[] key, byte[] pfx, string password)
-        {
-            return new
-            {
-                folio.Rfc,
-                folio.Uuid,
-                folio.Motivo,
-                folio.FolioSustitucion,
-                b64Cer = cer is null ? null : Convert.ToBase64String(cer),
-                b64Key = key is null ? null : Convert.ToBase64String(key),
-                b64Pfx = pfx is null ? null : Convert.ToBase64String(pfx),
-                password,
-            };
         }
     }
 }

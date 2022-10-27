@@ -1,6 +1,6 @@
-﻿namespace SW.Services.Cancelation
+﻿namespace SW.Services.Cancellation
 {
-    public class CancelationRequest
+    public class CancellationRequest
     {
         /// <summary>
         /// RFC del emisor.

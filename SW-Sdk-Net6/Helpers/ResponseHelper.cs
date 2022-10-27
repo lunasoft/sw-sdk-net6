@@ -1,5 +1,5 @@
 ﻿using SW.Services.Authentication;
-using SW.Services.Cancelation;
+using SW.Services.Cancellation;
 using SW.Services.Stamp;
 using SW.Services.Storage;
 
@@ -52,9 +52,9 @@ namespace SW.Helpers
                 MessageDetail = GetErrorDetail(ex)
             };
         }
-        internal static CancelationResponse ToCancelationResponse(Exception ex)
+        internal static CancellationResponse ToCancelationResponse(Exception ex)
         {
-            return new CancelationResponse()
+            return new CancellationResponse()
             {
                 Status = "error",
                 Message = ex.Message,

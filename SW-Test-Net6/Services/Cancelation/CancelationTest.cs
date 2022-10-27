@@ -1,22 +1,17 @@
-﻿using SW.Services.Cancelation;
+﻿using SW.Services.Cancellation;
 using SW.Test.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SW.Test.Services.CancelationTest
+namespace SW.Test.Services.CancellationTest
 {
     [TestClass]
-    public class CancelationTest
+    public class CancellationTest
     {
         #region UT Success
         [TestMethod]
-        public async Task CancelationUuid_Success()
+        public async Task CancellationUuid_Success()
         {
-            var cancelation = new Cancelation(BuildHelper.UrlService, BuildHelper.Token);
-            var request = new CancelationRequest()
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.Token);
+            var request = new CancellationRequest()
             {
                 Rfc = BuildHelper.Rfc,
                 Uuid = Guid.Parse("27967127-72db-47f9-8169-0c136d9a5bd8"),
@@ -29,10 +24,10 @@ namespace SW.Test.Services.CancelationTest
             Assert.IsTrue(response.Data.Uuid.Count > 0);
         }
         [TestMethod]
-        public async Task CancelationUuid_Auth_Success()
+        public async Task CancellationUuid_Auth_Success()
         {
-            var cancelation = new Cancelation(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
-            var request = new CancelationRequest()
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
+            var request = new CancellationRequest()
             {
                 Rfc = BuildHelper.Rfc,
                 Uuid = Guid.Parse("27967127-72db-47f9-8169-0c136d9a5bd8"),
@@ -45,10 +40,10 @@ namespace SW.Test.Services.CancelationTest
             Assert.IsTrue(response.Data.Uuid.Count > 0);
         }
         [TestMethod]
-        public async Task CancelationCsd_Success()
+        public async Task CancellationCsd_Success()
         {
-            var cancelation = new Cancelation(BuildHelper.UrlService, BuildHelper.Token);
-            var request = new CancelationRequest()
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.Token);
+            var request = new CancellationRequest()
             {
                 Rfc = BuildHelper.Rfc,
                 Uuid = Guid.Parse("27967127-72db-47f9-8169-0c136d9a5bd8"),
@@ -64,10 +59,10 @@ namespace SW.Test.Services.CancelationTest
             Assert.IsTrue(response.Data.Uuid.Count > 0);
         }
         [TestMethod]
-        public async Task CancelationCsd_Auth_Success()
+        public async Task CancellationCsd_Auth_Success()
         {
-            var cancelation = new Cancelation(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
-            var request = new CancelationRequest()
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
+            var request = new CancellationRequest()
             {
                 Rfc = BuildHelper.Rfc,
                 Uuid = Guid.Parse("27967127-72db-47f9-8169-0c136d9a5bd8"),
@@ -83,10 +78,10 @@ namespace SW.Test.Services.CancelationTest
             Assert.IsTrue(response.Data.Uuid.Count > 0);
         }
         [TestMethod]
-        public async Task CancelationPfx_Success()
+        public async Task CancellationPfx_Success()
         {
-            var cancelation = new Cancelation(BuildHelper.UrlService, BuildHelper.Token);
-            var request = new CancelationRequest()
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.Token);
+            var request = new CancellationRequest()
             {
                 Rfc = BuildHelper.Rfc,
                 Uuid = Guid.Parse("27967127-72db-47f9-8169-0c136d9a5bd8"),
@@ -101,10 +96,10 @@ namespace SW.Test.Services.CancelationTest
             Assert.IsTrue(response.Data.Uuid.Count > 0);
         }
         [TestMethod]
-        public async Task CancelationPfx_Auth_Success()
+        public async Task CancellationPfx_Auth_Success()
         {
-            var cancelation = new Cancelation(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
-            var request = new CancelationRequest()
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
+            var request = new CancellationRequest()
             {
                 Rfc = BuildHelper.Rfc,
                 Uuid = Guid.Parse("27967127-72db-47f9-8169-0c136d9a5bd8"),
@@ -119,20 +114,20 @@ namespace SW.Test.Services.CancelationTest
             Assert.IsTrue(response.Data.Uuid.Count > 0);
         }
         [TestMethod]
-        public async Task CancelationXml_Success()
+        public async Task CancellationXml_Success()
         {
-            var cancelation = new Cancelation(BuildHelper.UrlService, BuildHelper.Token);
-            var response = await cancelation.CancelByXmlAsync(await BuildHelper.GetStringResourceAsync(@"Xml\xmlCancelation.xml"));
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.Token);
+            var response = await cancelation.CancelByXmlAsync(await BuildHelper.GetStringResourceAsync(@"Xml\xmlCancellation.xml"));
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Acuse));
             Assert.IsTrue(response.Data.Uuid.Count > 0);
         }
         [TestMethod]
-        public async Task CancelationXml_Auth_Success()
+        public async Task CancellationXml_Auth_Success()
         {
-            var cancelation = new Cancelation(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
-            var response = await cancelation.CancelByXmlAsync(await BuildHelper.GetStringResourceAsync(@"Xml\xmlCancelation.xml"));
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.User, BuildHelper.Password);
+            var response = await cancelation.CancelByXmlAsync(await BuildHelper.GetStringResourceAsync(@"Xml\xmlCancellation.xml"));
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
             Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Acuse));
@@ -141,10 +136,10 @@ namespace SW.Test.Services.CancelationTest
         #endregion
         #region UT Error
         [TestMethod]
-        public async Task CancelationUuid_Error()
+        public async Task CancellationUuid_Error()
         {
-            var cancelation = new Cancelation(BuildHelper.UrlService, "invalidToken");
-            var request = new CancelationRequest()
+            var cancelation = new Cancellation(BuildHelper.UrlService, "invalidToken");
+            var request = new CancellationRequest()
             {
                 Rfc = BuildHelper.Rfc,
                 Uuid = Guid.Parse("27967127-72db-47f9-8169-0c136d9a5bd8"),
@@ -156,10 +151,10 @@ namespace SW.Test.Services.CancelationTest
             Assert.IsTrue(!String.IsNullOrEmpty(response.MessageDetail));
         }
         [TestMethod]
-        public async Task CancelationUuid_Auth_Error()
+        public async Task CancellationUuid_Auth_Error()
         {
-            var cancelation = new Cancelation(BuildHelper.UrlService, BuildHelper.User, "invalidPass");
-            var request = new CancelationRequest()
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.User, "invalidPass");
+            var request = new CancellationRequest()
             {
                 Rfc = BuildHelper.Rfc,
                 Uuid = Guid.Parse("27967127-72db-47f9-8169-0c136d9a5bd8"),
@@ -171,10 +166,10 @@ namespace SW.Test.Services.CancelationTest
             Assert.IsTrue(!String.IsNullOrEmpty(response.MessageDetail));
         }
         [TestMethod]
-        public async Task CancelationUuid_InvalidMotivo_Error()
+        public async Task CancellationUuid_InvalidMotivo_Error()
         {
-            var cancelation = new Cancelation(BuildHelper.UrlService, BuildHelper.Token);
-            var request = new CancelationRequest()
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.Token);
+            var request = new CancellationRequest()
             {
                 Rfc = BuildHelper.Rfc,
                 Uuid = Guid.Parse("27967127-72db-47f9-8169-0c136d9a5bd8"),
@@ -186,10 +181,41 @@ namespace SW.Test.Services.CancelationTest
             Assert.IsTrue(!String.IsNullOrEmpty(response.MessageDetail));
         }
         [TestMethod]
-        public async Task CancelationUuid_NullRequest_Error()
+        public async Task CancellationUuid_NullRequest_Error()
         {
-            var cancelation = new Cancelation(BuildHelper.UrlService, BuildHelper.Token);
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.Token);
             var response = await cancelation.CancelByUuidAsync(null);
+            Assert.IsTrue(response.Status.Equals("error"));
+            Assert.IsTrue(!String.IsNullOrEmpty(response.Message));
+            Assert.IsTrue(!String.IsNullOrEmpty(response.MessageDetail));
+        }
+        [TestMethod]
+        public async Task CancellationUuid_InvalidRfc_Error()
+        {
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.Token);
+            var request = new CancellationRequest()
+            {
+                Rfc = null,
+                Uuid = Guid.Parse("27967127-72db-47f9-8169-0c136d9a5bd8"),
+                Motivo = "02"
+            };
+            var response = await cancelation.CancelByUuidAsync(request);
+            Assert.IsTrue(response.Status.Equals("error"));
+            Assert.IsTrue(!String.IsNullOrEmpty(response.Message));
+            Assert.IsTrue(!String.IsNullOrEmpty(response.MessageDetail));
+        }
+        [TestMethod]
+        public async Task CancellationUuid_InvalidMotivoSustitucion_Error()
+        {
+            var cancelation = new Cancellation(BuildHelper.UrlService, BuildHelper.Token);
+            var request = new CancellationRequest()
+            {
+                Rfc = BuildHelper.Rfc,
+                Uuid = Guid.Parse("27967127-72db-47f9-8169-0c136d9a5bd8"),
+                Motivo = "02",
+                FolioSustitucion = Guid.NewGuid()
+            };
+            var response = await cancelation.CancelByUuidAsync(request);
             Assert.IsTrue(response.Status.Equals("error"));
             Assert.IsTrue(!String.IsNullOrEmpty(response.Message));
             Assert.IsTrue(!String.IsNullOrEmpty(response.MessageDetail));

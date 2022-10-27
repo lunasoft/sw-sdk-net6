@@ -19,7 +19,6 @@
   <ItemGroup>
     <Folder Include="Resources\Cfdi\" />
     <Folder Include="Resources\Csd\" />
-    <Folder Include="Resources\Xml\" />
     <Folder Include="Resources\Xslt\" />
     <Folder Include="Services\Authentication\" />
   </ItemGroup>
@@ -53,7 +52,7 @@
     <None Update="Resources\Csd\EKU9003173C9.pfx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Xml\xmlCancelation.xml">
+    <None Update="Resources\Xml\xmlCancellation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Xslt\cadenaoriginal_4_0.xslt">

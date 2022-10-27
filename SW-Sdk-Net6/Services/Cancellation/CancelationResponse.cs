@@ -1,14 +1,14 @@
 ﻿using SW.Entities;
 using System.Runtime.Serialization;
 
-namespace SW.Services.Cancelation
+namespace SW.Services.Cancellation
 {
-    public class CancelationResponse : Response
+    public class CancellationResponse : Response
     {
         [DataMember]
-        public CancelationData Data { get; set; }
+        public CancellationData Data { get; set; }
     }
-    public partial class CancelationData
+    public partial class CancellationData
     {
         [DataMember]
         public string Acuse { get; set; }

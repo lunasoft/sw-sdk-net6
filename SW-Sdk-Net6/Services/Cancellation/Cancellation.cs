@@ -1,28 +1,28 @@
 ﻿using System.Text;
 
-namespace SW.Services.Cancelation
+namespace SW.Services.Cancellation
 {
-    public class Cancelation : CancelationService
+    public class Cancellation : CancellationService
     {
         /// <summary>
-        /// Crear una instancia de la clase Cancelation.
+        /// Crear una instancia de la clase Cancellation.
         /// </summary>
         /// <param name="url">URL base.</param>
         /// <param name="user">Usuario.</param>
         /// <param name="password">Contraseña.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public Cancelation(string url, string user, string password, int proxyPort = 0, string? proxy = null) : base(url, user, password, proxyPort, proxy)
+        public Cancellation(string url, string user, string password, int proxyPort = 0, string? proxy = null) : base(url, user, password, proxyPort, proxy)
         {
         }
         /// <summary>
-        /// Crear una instancia de la clase Cancelation.
+        /// Crear una instancia de la clase Cancellation.
         /// </summary>
         /// <param name="url">URL base.</param>
         /// <param name="token">Token de autenticación.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public Cancelation(string url, string token, int proxyPort = 0, string? proxy = null) : base(url, token, proxyPort, proxy)
+        public Cancellation(string url, string token, int proxyPort = 0, string? proxy = null) : base(url, token, proxyPort, proxy)
         {
         }
         /// <summary>
@@ -30,9 +30,9 @@ namespace SW.Services.Cancelation
         /// </summary>
         /// <param name="folio">UUID del comprobante.</param>
         /// <returns></returns>
-        public async Task<CancelationResponse> CancelByUuidAsync(CancelationRequest folio)
+        public async Task<CancellationResponse> CancelByUuidAsync(CancellationRequest folio)
         {
-            return await CancelationAsync(folio);
+            return await CancellationAsync(folio);
         }
         /// <summary>
         /// Servicio de cancelación por CSD.
@@ -42,9 +42,9 @@ namespace SW.Services.Cancelation
         /// <param name="key">Certificado Key del emisor.</param>
         /// <param name="password">Contraseña del certificado.</param>
         /// <returns></returns>
-        public async Task<CancelationResponse> CancelByCsdAsync(CancelationRequest folio, byte[] cer, byte[] key, string password)
+        public async Task<CancellationResponse> CancelByCsdAsync(CancellationRequest folio, byte[] cer, byte[] key, string password)
         {
-            return await CancelationAsync(folio, cer, key, password);
+            return await CancellationAsync(folio, cer, key, password);
         }
         /// <summary>
         /// Servicio de cancelación por PFX.
@@ -53,18 +53,18 @@ namespace SW.Services.Cancelation
         /// <param name="pfx">Certificado PFX.</param>
         /// <param name="password">Contraseña del certificado.</param>
         /// <returns></returns>
-        public async Task<CancelationResponse> CancelByPfxAsync(CancelationRequest folio, byte[] pfx, string password)
+        public async Task<CancellationResponse> CancelByPfxAsync(CancellationRequest folio, byte[] pfx, string password)
         {
-            return await CancelationAsync(folio, pfx, password);
+            return await CancellationAsync(folio, pfx, password);
         }
         /// <summary>
         /// Servicio de cancelación por XML.
         /// </summary>
         /// <param name="xml">String del XML firmado de cancelación.</param>
         /// <returns></returns>
-        public async Task<CancelationResponse> CancelByXmlAsync(string xml)
+        public async Task<CancellationResponse> CancelByXmlAsync(string xml)
         {
-            return await CancelationAsync(Encoding.UTF8.GetBytes(xml));
+            return await CancellationAsync(Encoding.UTF8.GetBytes(xml));
         }
     }
 }
