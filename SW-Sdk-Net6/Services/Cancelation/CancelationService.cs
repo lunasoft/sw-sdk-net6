@@ -6,7 +6,7 @@ namespace SW.Services.Cancelation
     public class CancelationService : Services
     {
         private readonly CancelationResponseHandler _handler;
-        private string path = "/cfdi33/cancel";
+        private readonly string _path = "/cfdi33/cancel";
         public CancelationService(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxyPort, proxy)
         {
             _handler = new CancelationResponseHandler();
@@ -21,7 +21,7 @@ namespace SW.Services.Cancelation
             {
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
-                path = String.Format("{0}/{1}/{2}/{3}/{4}", path, folio.Rfc, folio.Uuid.ToString(), folio.Motivo,
+                string path = String.Format("{0}/{1}/{2}/{3}/{4}", _path, folio.Rfc, folio.Uuid.ToString(), folio.Motivo,
                     folio.FolioSustitucion != null ? folio.FolioSustitucion.ToString() : String.Empty);
                 return await _handler.PostAsync(this.Url, path, headers, proxy);
             }
@@ -36,7 +36,7 @@ namespace SW.Services.Cancelation
             {
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
-                path = String.Format("{0}/{1}", path, "csd");
+                string path = String.Format("{0}/{1}", _path, "csd");
                 var body = CancelationRequestBody(folio, cer, key, null, password);
                 return await _handler.PostAsync(this.Url, path, headers, proxy, JsonConvert.SerializeObject(body));
             }
@@ -51,7 +51,7 @@ namespace SW.Services.Cancelation
             {
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
-                path = String.Format("{0}/{1}", path, "pfx");
+                string path = String.Format("{0}/{1}", _path, "pfx");
                 var body = CancelationRequestBody(folio, null, null, pfx, password);
                 return await _handler.PostAsync(this.Url, path, headers, proxy, JsonConvert.SerializeObject(body));
             }
@@ -66,7 +66,7 @@ namespace SW.Services.Cancelation
             {
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
-                path = String.Format("{0}/{1}", path, "xml");
+                string path = String.Format("{0}/{1}", _path, "xml");
                 return await _handler.PostAsync(this.Url, path, headers, proxy, xml);
             }
             catch (Exception ex)
