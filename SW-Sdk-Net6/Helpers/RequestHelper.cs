@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Json;
+using System.Net.Mail;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,5 +39,23 @@ namespace SW.Helpers
             };
             return headers;
         }
+        internal static Dictionary<string, string> SetupHeaders(Dictionary<string, string> headers, string customId = null, string[] emails = null, bool pdf = false)
+        {
+            if(customId != null)
+            {
+                headers.Add("customid", customId);
+            }
+            if(emails != null)
+            {
+                var emailHeader = String.Join(',', emails);
+                headers.Add("email", emailHeader);
+            }
+            if (pdf)
+            {
+                headers.Add("pdf", String.Empty);
+            }
+            return headers;
+        }
+        internal static Dictionary<string, string> SetupHeaders(string user, string password) => new() { { "user", user }, { "password", password } };
     }
 }
