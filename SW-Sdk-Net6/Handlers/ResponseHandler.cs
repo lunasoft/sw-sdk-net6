@@ -1,4 +1,5 @@
 ﻿using SW.Entities;
+using System.Runtime.CompilerServices;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -25,6 +26,28 @@ namespace SW.Handlers
                         client.DefaultRequestHeaders.Add(header.Key, header.Value);
                     }
                     result = await client.PostAsync(path, content);
+                }
+
+                return await _handler.TryGetResponseAsync(result);
+            }
+            catch (HttpRequestException ex)
+            {
+                return _handler.GetExceptionResponse(ex);
+            }
+        }
+        private async Task<T> GetResponseAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy)
+        {
+            HttpResponseMessage result;
+            try
+            {
+                using (HttpClient client = new HttpClient(proxy, false))
+                {
+                    client.BaseAddress = new Uri(url);
+                    foreach (var header in headers)
+                    {
+                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                    }
+                    result = await client.GetAsync(path);
                 }
 
                 return await _handler.TryGetResponseAsync(result);
@@ -76,6 +99,18 @@ namespace SW.Handlers
             var data = new ByteArrayContent(content);
             setContent.Add(data, "xml", "xml");
             return await PostResponseAsync(url, path, headers, proxy, setContent);
+        }
+        /// <summary>
+        /// GET
+        /// </summary>
+        /// <param name="url">Base Url.</param>
+        /// <param name="path">Path.</param>
+        /// <param name="headers">Headers.</param>
+        /// <param name="proxy">Proxy settings.</param>
+        /// <returns></returns>
+        internal async Task<T> GetAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy)
+        {
+            return await GetResponseAsync(url, path, headers, proxy);
         }
     }
 }
