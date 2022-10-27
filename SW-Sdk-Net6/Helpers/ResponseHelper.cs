@@ -1,12 +1,7 @@
 ﻿using SW.Services.Authentication;
 using SW.Services.Cancelation;
-using SW.Services.IssueJson;
 using SW.Services.Stamp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SW.Services.Storage;
 
 namespace SW.Helpers
 {
@@ -66,12 +61,30 @@ namespace SW.Helpers
                 MessageDetail = GetErrorDetail(ex)
             };
         }
+        internal static StorageResponse ToStorageResponse(Exception ex)
+        {
+            return new StorageResponse()
+            {
+                Status = "error",
+                Message = ex.Message,
+                MessageDetail = GetErrorDetail(ex)
+            };
+        }
+        internal static StorageExtraResponse ToStorageExtraResponse(Exception ex)
+        {
+            return new StorageExtraResponse()
+            {
+                Status = "error",
+                Message = ex.Message,
+                MessageDetail = GetErrorDetail(ex)
+            };
+        }
         private static string GetErrorDetail(Exception ex)
         {
             if (ex.InnerException != null)
                 return ex.InnerException.Message;
             else
-                return ex.StackTrace ?? "Error no clasificado.";
+                return ex.StackTrace ?? String.Empty;
         }
     }
 }
