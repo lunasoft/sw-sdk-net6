@@ -1,4 +1,5 @@
-﻿using System.Net.Mail;
+﻿using SW.Services.Cancellation;
+using System.Net.Mail;
 
 namespace SW.Helpers
 {
@@ -35,6 +36,21 @@ namespace SW.Helpers
                     message = "El header email contiene más de 5 correos.";
                     return false;
                 }
+            }
+            message = String.Empty;
+            return true;
+        }
+        internal static bool ValidateCancellationRequest(CancellationRequest request, out string message)
+        {
+            if (String.IsNullOrEmpty(request.Rfc))
+            {
+                message = "El RFC no es válido.";
+                return false;
+            }
+            if (!new string[] { "01", "02", "03", "04" }.Contains(request.Motivo) || (request.FolioSustitucion != null && request.Motivo != "01"))
+            {
+                message = "El motivo de cancelación no es válido.";
+                return false;
             }
             message = String.Empty;
             return true;
