@@ -1,0 +1,47 @@
+﻿namespace SW.Services.Storage
+{
+    public class Storage : StorageService
+    {
+        /// <summary>
+        /// Crear una instancia de la clase Storage.
+        /// </summary>
+        /// <param name="urlApi">URL Api.</param>
+        /// <param name="url">URL Base.</param>
+        /// <param name="user">Usuario.</param>
+        /// <param name="password">Contrasena.</param>
+        /// <param name="proxyPort">Puerto Proxy.</param>
+        /// <param name="proxy">Proxy.</param>
+        public Storage(string urlApi, string url, string user, string password, int proxyPort = 0, string proxy = null) : base (urlApi, url, user, password, proxyPort, proxy)
+        {
+        }
+        /// <summary>
+        /// Crear una instancia de la clase Storage.
+        /// </summary>
+        /// <param name="urlApi">URL Api.</param>
+        /// <param name="token">Token de autenticacion.</param>
+        /// <param name="proxyPort">Puerto Proxy.</param>
+        /// <param name="proxy">Proxy.</param>
+        public Storage(string urlApi, string token, int proxyPort = 0, string proxy = null) : base(urlApi, token, proxyPort, proxy)
+        {
+        }
+        /// <summary>
+        /// Servicio de recuperación de XML por UUID. Obtiene las URL de descarga de la información almacenada en storage, 
+        /// tal como el XML timbrado, Acuse de CFDI, Acuse de cancelación, PDF y Addenda.
+        /// </summary>
+        /// <param name="uuid">UUID del comprobante timbrado.</param>
+        /// <returns>StorageResponse</returns>
+        public async Task<StorageResponse> GetXmlAsync(Guid uuid)
+        {
+            return await RetrieveXmlAsync(uuid);
+        }
+        /// <summary>
+        /// Servicio de recuperacion de XML por UUID. Adicional a las URL de descarga, se obtienen todos los datos extras correspondientes al comprobante timbrado.
+        /// </summary>
+        /// <param name="uuid">UUID del comprobante timbrado.</param>
+        /// <returns>StorageExtraResponse</returns>
+        public async Task<StorageExtraResponse> GetXmlExtrasAsync(Guid uuid)
+        {
+            return await RetrieveXmlExtrasAsync(uuid);
+        }
+    }
+}

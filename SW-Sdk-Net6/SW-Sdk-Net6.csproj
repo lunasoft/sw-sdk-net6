@@ -1,13 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
   	  <AssemblyName>SW-sdk-Net6</AssemblyName>
-      <VersionPrefix>0.0.1.1</VersionPrefix>
+      <VersionPrefix>0.0.2.1</VersionPrefix>
       <TargetFramework>net6.0</TargetFramework>
       <RootNamespace>SW</RootNamespace>
       <ImplicitUsings>enable</ImplicitUsings>
       <Nullable>enable</Nullable>
       <Title>SDK SW Sapien®</Title>
-      <VersionPrefix>0.0.0.1</VersionPrefix>
       <Authors>SW Sapien</Authors>
       <Company>SDK SW Sapien®</Company>
       <Description>Librería para el consumo de los servicios web de SW sapien®.</Description>

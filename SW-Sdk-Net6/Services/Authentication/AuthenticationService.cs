@@ -1,4 +1,6 @@
-﻿namespace SW.Services.Authentication
+﻿using SW.Helpers;
+
+namespace SW.Services.Authentication
 {
     public class AuthenticationService : Services
     {
@@ -11,12 +13,8 @@
         {
             try
             {
-                Dictionary<string, string> headers = new()
-                {
-                    { "user", this.User },
-                    { "password", this.Password }
-                };
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
+                var headers = RequestHelper.SetupHeaders(User, Password);
+                var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
                 return await _handler.PostAsync(Url, "security/authenticate", headers, proxy);
             }
             catch(Exception e)

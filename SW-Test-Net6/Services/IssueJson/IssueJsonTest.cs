@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using SW.Test.Helpers;
 using SW.Services.Authentication;
 
-namespace SW.Test.Services.IssueTest
+namespace SW.Test.Services.IssueJsonTest
 {
     [TestClass]
     public class IssueJsonTest
@@ -22,7 +22,7 @@ namespace SW.Test.Services.IssueTest
             var response = await issue.StampV1Async(json);
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Tfd));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Tfd));
         }
         [TestMethod]
         public async Task IssueJsonV1_Auth_Success()
@@ -32,7 +32,7 @@ namespace SW.Test.Services.IssueTest
             var response = await issue.StampV1Async(json);
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Tfd));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Tfd));
         }
         [TestMethod]
         public async Task IssueJsonV1_SpecialChar_Success()
@@ -42,7 +42,7 @@ namespace SW.Test.Services.IssueTest
             var response = await issue.StampV1Async(json);
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Tfd));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Tfd));
         }
         #endregion
         #region V2
@@ -54,8 +54,8 @@ namespace SW.Test.Services.IssueTest
             var response = await issue.StampV2Async(json);
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Tfd));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Cfdi));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Tfd));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Cfdi));
         }
         [TestMethod]
         public async Task IssueJsonV2_Auth_Success()
@@ -65,8 +65,8 @@ namespace SW.Test.Services.IssueTest
             var response = await issue.StampV2Async(json);
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Tfd));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Cfdi));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Tfd));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Cfdi));
         }
         [TestMethod]
         public async Task IssueJsonV2_SpecialChar_Success()
@@ -76,8 +76,8 @@ namespace SW.Test.Services.IssueTest
             var response = await issue.StampV2Async(json);
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Tfd));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Cfdi));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Tfd));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Cfdi));
         }
         #endregion
         #region V3
@@ -89,7 +89,7 @@ namespace SW.Test.Services.IssueTest
             var response = await issue.StampV3Async(json);
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Cfdi));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Cfdi));
         }
         [TestMethod]
         public async Task IssueJsonV3_Auth_Success()
@@ -99,7 +99,7 @@ namespace SW.Test.Services.IssueTest
             var response = await issue.StampV3Async(json);
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Cfdi));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Cfdi));
         }
         [TestMethod]
         public async Task IssueJsonV3_SpecialChar_Success()
@@ -109,7 +109,7 @@ namespace SW.Test.Services.IssueTest
             var response = await issue.StampV3Async(json);
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Cfdi));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Cfdi));
         }
         #endregion
         #region V4
@@ -121,15 +121,15 @@ namespace SW.Test.Services.IssueTest
             var response = await issue.StampV4Async(json);
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.QrCode));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Uuid));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.FechaTimbrado));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.CadenaOriginalSAT));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Cfdi));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.NoCertificadoCFDI));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.NoCertificadoSAT));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.SelloCFDI));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.SelloSAT));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.QrCode));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Uuid));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.FechaTimbrado));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.CadenaOriginalSAT));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Cfdi));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.NoCertificadoCFDI));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.NoCertificadoSAT));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.SelloCFDI));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.SelloSAT));
         }
         [TestMethod]
         public async Task IssueJsonV4_Auth_Success()
@@ -139,15 +139,15 @@ namespace SW.Test.Services.IssueTest
             var response = await issue.StampV4Async(json);
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.QrCode));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Uuid));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.FechaTimbrado));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.CadenaOriginalSAT));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Cfdi));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.NoCertificadoCFDI));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.NoCertificadoSAT));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.SelloCFDI));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.SelloSAT));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.QrCode));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Uuid));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.FechaTimbrado));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.CadenaOriginalSAT));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Cfdi));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.NoCertificadoCFDI));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.NoCertificadoSAT));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.SelloCFDI));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.SelloSAT));
         }
         [TestMethod]
         public async Task IssueJsonV4_SpecialChar_Success()
@@ -157,15 +157,15 @@ namespace SW.Test.Services.IssueTest
             var response = await issue.StampV4Async(json);
             Assert.IsTrue(response.Status.Equals("success"));
             Assert.IsNotNull(response.Data);
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.QrCode));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Uuid));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.FechaTimbrado));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.CadenaOriginalSAT));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.Cfdi));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.NoCertificadoCFDI));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.NoCertificadoSAT));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.SelloCFDI));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Data.SelloSAT));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.QrCode));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Uuid));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.FechaTimbrado));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.CadenaOriginalSAT));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.Cfdi));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.NoCertificadoCFDI));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.NoCertificadoSAT));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.SelloCFDI));
+            Assert.IsTrue(!string.IsNullOrEmpty(response.Data.SelloSAT));
         }
         #endregion
         #endregion

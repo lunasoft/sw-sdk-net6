@@ -1,18 +1,10 @@
-﻿using SW.Entities;
-using SW.Services.Authentication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SW.Services
+﻿namespace SW.Services
 {
     public class Services
     {
         private string _token;
         private string _url;
+        private string _urlApi;
         private string _user;
         private string _password;
         private string? _proxy;
@@ -22,6 +14,7 @@ namespace SW.Services
 
         internal string Token { get { return _token; } }
         internal string Url { get { return _url; } }
+        internal string UrlApi { get { return _urlApi; } }
         internal string User { get { return _user; } }
         internal string Password { get { return _password; } }
         internal string? Proxy { get { return _proxy; } }
@@ -43,6 +36,15 @@ namespace SW.Services
             _password = password;
             _proxy = proxy;
             _proxyPort = proxyPort;
+        }
+        public Services(string urlApi, string url, string user, string password, int proxyPort, string proxy)
+        {
+            _url = url;
+            _urlApi = urlApi;
+            _user = user;
+            _password = password;
+            _proxyPort = proxyPort;
+            _proxy = proxy;
         }
         internal async Task<Services> SetupAuthAsync()
         {
