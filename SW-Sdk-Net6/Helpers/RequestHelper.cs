@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http.Json;
-using System.Net.Mail;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using SW.Services;
+﻿using System.Net;
 
 namespace SW.Helpers
 {
