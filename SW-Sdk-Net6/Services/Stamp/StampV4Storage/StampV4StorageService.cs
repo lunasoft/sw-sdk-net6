@@ -29,11 +29,11 @@ namespace SW.Services.Stamp
                 var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
                 var response = await handler.PostAsync(this.Url, path, headers, proxy, xml);
                 if (response.Status.Equals("error") && response.Message.Equals("CFDI3307 - Timbre duplicado. El customId proporcionado está duplicado.") 
-                    && String.IsNullOrEmpty(response.Data.Cfdi) && ConvertionHelper.TryGetUuid(response.Data.Tfd, out Guid uuid))
+                    && String.IsNullOrEmpty(response.Data.Cfdi) && ConvertionHelper.TryGetUuid(response.Data.Tfd, out Guid uuid, isB64))
                 {
                     Storage.Storage storage = new(_urlApi, Token, ProxyPort, Proxy);
                     var result = await storage.GetXmlAsync(uuid);
-                    return await ConvertionHelper.ToStampResponseV2(response, result, proxy);
+                    return await ConvertionHelper.ToStampResponseV2(response, result, proxy, isB64);
                 }
                 return response;
             }
