@@ -30,7 +30,8 @@ namespace SW.Services.Issue
         {
         }
         /// <summary>
-        /// Servicio de Timbrado V4 de un CFDI sellado en formato XML. Recibe un Custom ID y puede realizar el guardado del PDF.
+        /// Servicio de Timbrado V4 de un CFDI sellado en formato XML. Recibe un Custom ID y puede realizar el guardado del PDF. Obtiene los datos faltantes
+        /// de la versión del Response cuando se obtiene un error por Custom ID duplicado.
         /// </summary>
         /// <param name="xml">String del CFDI sellado en formato XML.</param>
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
@@ -42,7 +43,8 @@ namespace SW.Services.Issue
             return await StampStorageServiceV2Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Issue, customId, null, pdf);
         }
         /// <summary>
-        /// Servicio de Timbrado V4 que recibe un Custom ID y un array de correos para el reenvio del XML y el PDF del CFDI.
+        /// Servicio de Timbrado V4 que recibe un Custom ID y un array de correos para el reenvio del XML y el PDF del CFDI. Obtiene los datos faltantes
+        /// de la versión del Response cuando se obtiene un error por Custom ID duplicado.
         /// </summary>
         /// <param name="xml">String del CFDI sellado en formato XML.</param>
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
