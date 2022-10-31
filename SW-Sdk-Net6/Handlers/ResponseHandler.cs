@@ -1,5 +1,4 @@
 ﻿using SW.Entities;
-using System.Runtime.CompilerServices;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
