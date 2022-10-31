@@ -25,10 +25,9 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '**\SW-Sdk-Net6.sln'
+    vsVersion: '16.0'
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
-    feedsToUse: 'select'
-    vstsFeed: '45842131-226b-4c39-ab92-bb687dfdfca5'
 - task: VisualStudioTestPlatformInstaller@1
   inputs:
     packageFeedSelector: 'nugetOrg'
