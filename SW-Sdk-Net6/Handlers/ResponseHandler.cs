@@ -1,4 +1,5 @@
 ﻿using SW.Entities;
+using SW.Helpers;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -55,6 +56,10 @@ namespace SW.Handlers
             {
                 return _handler.GetExceptionResponse(ex);
             }
+        }
+        internal Response HandleException(Exception ex)
+        {
+            return ResponseHelper.ToResponse(ex);
         }
         /// <summary>
         /// POST No Body.
