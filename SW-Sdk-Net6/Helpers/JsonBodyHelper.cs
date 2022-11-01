@@ -23,5 +23,31 @@ namespace SW.Helpers
             };
             return JsonConvert.SerializeObject(body);
         }
+        /// <summary>
+        /// Serialize the pdf request to a JSON string.
+        /// </summary>
+        internal static string SerializePdf(string xml, string template, Dictionary<string, string> extras, string logo)
+        {
+            var body = new
+            {
+                xmlContent = xml,
+                templateId = template,
+                extras,
+                logo
+            };
+            return JsonConvert.SerializeObject(body);
+        }
+        /// <summary>
+        /// Serialize the resend request to a JSON string.
+        /// </summary>
+        internal static string SerializeResend(Guid uuid, string[] email)
+        {
+            var body = new
+            {
+                uuid = uuid.ToString(),
+                to = String.Join(',', email).Trim()
+            };
+            return JsonConvert.SerializeObject(body);
+        }
     }
 }
