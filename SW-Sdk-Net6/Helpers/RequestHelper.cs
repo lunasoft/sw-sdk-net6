@@ -37,7 +37,7 @@ namespace SW.Helpers
             }
             if(emails != null)
             {
-                var emailHeader = String.Join(',', emails);
+                var emailHeader = String.Join(',', emails).Trim();
                 headers.Add("email", emailHeader);
             }
             if (pdf)
