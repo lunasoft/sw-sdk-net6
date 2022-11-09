@@ -19,16 +19,16 @@ namespace SW.Services.Balance
             {
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
-                return await handler.GetBalanceResponseAsync(Url, idUser is null ? _path : _path + idUser.ToString(), headers, proxy);
+                return await handler.GetBalanceResponseAsync(Url, idUser is null ? _path : String.Format("/{0}/{1}", _path, idUser), headers, proxy);
             }
             catch(Exception ex)
             {
                 return handler.HandleException(ex);
             }
         }
-        internal async Task<Response> BalanceManagementAsync(Guid idUser, BalanceAction action, int stampCount, string? comment)
+        internal async Task<StampBalanceResponse> StampBalanceAsync(Guid idUser, BalanceAction action, int stampCount, string? comment)
         {
-            ResponseHandler handler = new();
+            StampBalanceResponseHandler handler = new();
             try
             {   
                 if (!ValidationHelper.ValidateBalanceRequest(idUser, stampCount, out string message)) throw new Exception(message);
