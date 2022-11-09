@@ -14,10 +14,14 @@ namespace SW.Services.Balance
         } 
         internal BalanceResponse HandleException(Exception ex)
         {
-            return ResponseHelper.ToBalanceResponse(ex);
+            return (BalanceResponse)ResponseHelper.ToErrorResponse(ex);
         }
     }
-    internal class ResponseHandler : ResponseHandler<Response>
+    internal class StampBalanceResponseHandler : ResponseHandler<StampBalanceResponse>
     {
+        internal StampBalanceResponse HandleException(Exception ex)
+        {
+            return (StampBalanceResponse)ResponseHelper.ToErrorResponse(ex);
+        }
     } 
 }
