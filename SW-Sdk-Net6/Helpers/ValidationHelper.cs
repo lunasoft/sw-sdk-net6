@@ -55,5 +55,20 @@ namespace SW.Helpers
             message = String.Empty;
             return true;
         }
+        internal static bool ValidateBalanceRequest(Guid idUser, int? stamps, out string message)
+        {
+            if (Guid.Empty.Equals(idUser))
+            {
+                message = "El IdUsuario es invalido.";
+                return false;
+            }
+            if(stamps <= 0)
+            {
+                message = "La cantidad de timbres debe ser mayor a 0.";
+                return false;
+            }
+            message = String.Empty;
+            return true;
+        }
     }
 }
