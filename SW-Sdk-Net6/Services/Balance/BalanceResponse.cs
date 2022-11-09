@@ -1,10 +1,5 @@
 ﻿using SW.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SW.Services.Balance
 {
@@ -14,7 +9,7 @@ namespace SW.Services.Balance
         [DataMember]
         public BalanceResponseData Data { get; set; }
     }
-    public abstract class BalanceResponseData
+    public class BalanceResponseData
     {
         [DataMember]
         public string IdSaldoCliente { get; set; }
@@ -28,5 +23,10 @@ namespace SW.Services.Balance
         public bool? Unlimited { get; set; }
         [DataMember]
         public int? TimbresAsignados { get; set; }
+    }
+    public class StampBalanceResponse : Response
+    {
+        [DataMember]
+        public string Data { get; set; }
     }
 }
