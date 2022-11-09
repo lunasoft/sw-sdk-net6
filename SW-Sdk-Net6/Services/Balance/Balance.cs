@@ -49,13 +49,13 @@ namespace SW.Services.Balance
         /// <param name="idUser">IdUser de la cuenta.</param>
         /// <param name="stamps">Espcifica la cantidad de timbres a agregar, debe ser mayor que 0.</param>
         /// <returns>Response</returns>
-        public async Task<Response> AddStampsAsync(Guid idUser, int stamps, string comment) => await BalanceManagementAsync(idUser, BalanceAction.Add, stamps, comment);
+        public async Task<StampBalanceResponse> AddStampsAsync(Guid idUser, int stamps, string comment) => await StampBalanceAsync(idUser, BalanceAction.Add, stamps, comment);
         /// <summary>
         /// Servicio para remover timbres a una cuenta hijo.
         /// </summary>
         /// <param name="idUser"></param>
         /// <param name="stamps">Espcifica la cantidad de timbres a remover, debe ser mayor que 0.</param>
         /// <returns>Response</returns>
-        public async Task<Response> RemoveStampsAsync(Guid idUser, int stamps, string comment) => await BalanceManagementAsync(idUser, BalanceAction.Remove, stamps, comment);
+        public async Task<StampBalanceResponse> RemoveStampsAsync(Guid idUser, int stamps, string comment) => await StampBalanceAsync(idUser, BalanceAction.Remove, stamps, comment);
     }
 }
