@@ -59,7 +59,7 @@ namespace SW.Handlers
         }
         internal Response HandleException(Exception ex)
         {
-            return ResponseHelper.ToResponse(ex);
+            return ResponseHelper.ToErrorResponse(ex);
         }
         /// <summary>
         /// POST No Body.

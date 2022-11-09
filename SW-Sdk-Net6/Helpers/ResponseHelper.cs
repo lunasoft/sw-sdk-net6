@@ -10,7 +10,7 @@ namespace SW.Helpers
 {
     internal class ResponseHelper
     {
-        internal static Response ToResponse(Exception ex)
+        internal static Response ToErrorResponse(Exception ex)
         {
             return new()
             {
@@ -100,15 +100,6 @@ namespace SW.Helpers
                 MessageDetail = GetErrorDetail(ex)
             };
         }
-        internal static BalanceResponse ToBalanceResponse(Exception ex)
-        {
-            return new BalanceResponse()
-            {
-                Status = "error",
-                Message = ex.Message,
-                MessageDetail = GetErrorDetail(ex)
-            };
-        } 
         private static string GetErrorDetail(Exception ex)
         {
             if (ex.InnerException != null)
