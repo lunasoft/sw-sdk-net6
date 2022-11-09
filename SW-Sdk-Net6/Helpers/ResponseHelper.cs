@@ -1,5 +1,6 @@
 ﻿using SW.Entities;
 using SW.Services.Authentication;
+using SW.Services.Balance;
 using SW.Services.Cancellation;
 using SW.Services.Pdf;
 using SW.Services.Stamp;
@@ -99,12 +100,21 @@ namespace SW.Helpers
                 MessageDetail = GetErrorDetail(ex)
             };
         }
+        internal static BalanceResponse ToBalanceResponse(Exception ex)
+        {
+            return new BalanceResponse()
+            {
+                Status = "error",
+                Message = ex.Message,
+                MessageDetail = GetErrorDetail(ex)
+            };
+        } 
         private static string GetErrorDetail(Exception ex)
         {
             if (ex.InnerException != null)
                 return ex.InnerException.Message;
             else
-                return ex.StackTrace ?? String.Empty;
+                return ex.StackTrace?.Trim() ?? String.Empty;
         }
     }
 }
