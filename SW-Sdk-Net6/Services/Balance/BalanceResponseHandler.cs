@@ -1,0 +1,23 @@
+﻿using SW.Entities;
+using SW.Handlers;
+using SW.Helpers;
+
+namespace SW.Services.Balance
+{
+    internal class BalanceResponseHandler : ResponseHandler<BalanceResponse>
+    {
+        internal async Task<BalanceResponse> GetBalanceResponseAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy)
+        {
+            var result = await GetAsync(url, path, headers, proxy);
+            return result.Status.Equals("success") && !Guid.TryParse(result.Data?.IdSaldoCliente, out _) 
+                    ? HandleException(new Exception("No se encuentra registro de usuario.")) : result;
+        } 
+        internal BalanceResponse HandleException(Exception ex)
+        {
+            return ResponseHelper.ToBalanceResponse(ex);
+        }
+    }
+    internal class ResponseHandler : ResponseHandler<Response>
+    {
+    } 
+}
