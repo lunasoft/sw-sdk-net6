@@ -90,15 +90,6 @@ namespace SW.Helpers
                 MessageDetail = GetErrorDetail(ex)
             };
         }
-        internal static PdfResponse ToPdfResponse(Exception ex)
-        {
-            return new PdfResponse()
-            {
-                Status = "error",
-                Message = ex.Message,
-                MessageDetail = GetErrorDetail(ex)
-            };
-        }
         private static string GetErrorDetail(Exception ex)
         {
             if (ex.InnerException != null)
