@@ -1,17 +1,20 @@
 ﻿using SW.Entities;
+using SW.Handlers;
 using SW.Helpers;
 
 namespace SW.Services.Pdf
 {
     public class PdfService : Services
     {
-        private readonly PdfResponseHandler _handler;
+        private readonly ResponseHandler<PdfResponse> _handler;
         private readonly string _path = "/pdf/v1/api";
-        public PdfService(string urlApi, string url, string user, string password, int proxyPort, string proxy) : base(urlApi, url, user, password, proxyPort, proxy)
+        public PdfService(string urlApi, string url, string user, string password, int proxyPort, string proxy) 
+            : base(urlApi, url, user, password, proxyPort, proxy)
         {
             _handler = new();
         }
-        public PdfService(string urlApi, string token, int proxyPort, string proxy) : base(urlApi, token, proxyPort, proxy)
+        public PdfService(string urlApi, string token, int proxyPort, string proxy) 
+            : base(urlApi, token, proxyPort, proxy)
         {
             _handler = new();
         }
