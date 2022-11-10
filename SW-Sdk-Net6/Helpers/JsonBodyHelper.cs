@@ -49,5 +49,16 @@ namespace SW.Helpers
             };
             return JsonConvert.SerializeObject(body);
         }
+        /// <summary>
+        /// Serialize the balance request to a JSON string.
+        /// </summary>
+        internal static string SerializeBalance(string comment)
+        {
+            var body = new
+            {
+                comentario = comment
+            };
+            return JsonConvert.SerializeObject(body);
+        }
     }
 }
