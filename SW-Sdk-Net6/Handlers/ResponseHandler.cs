@@ -57,9 +57,9 @@ namespace SW.Handlers
                 return _handler.GetExceptionResponse(ex);
             }
         }
-        internal Response HandleException(Exception ex)
+        internal T HandleException(Exception ex)
         {
-            return ResponseHelper.ToResponse(ex);
+            return (T)ResponseHelper.ToResponse(ex);
         }
         /// <summary>
         /// POST No Body.
