@@ -14,9 +14,8 @@ namespace SW.Services.Pdf
         /// <param name="password">Contrasena.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public Pdf(string urlApi, string url, string user, string password, int proxyPort = 0, string proxy = null) : base(urlApi, url, user, password, proxyPort, proxy)
-        {
-        }
+        public Pdf(string urlApi, string url, string user, string password, int proxyPort = 0, string proxy = null)
+            : base(urlApi, url, user, password, proxyPort, proxy) { }
         /// <summary>
         /// Crear una instancia de la clase Pdf.
         /// </summary>
@@ -24,9 +23,8 @@ namespace SW.Services.Pdf
         /// <param name="token">Token de autenticacion.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public Pdf(string urlApi, string token, int proxyPort = 0, string proxy = null) : base(urlApi, token, proxyPort, proxy)
-        {
-        }
+        public Pdf(string urlApi, string token, int proxyPort = 0, string proxy = null)
+            : base(urlApi, token, proxyPort, proxy) { }
         /// <summary>
         /// Servicio de generación de PDF.
         /// </summary>
