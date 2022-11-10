@@ -19,7 +19,7 @@ namespace SW.Services.Balance
         /// <param name="password">Contrasena.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public Balance(string urlApi, string url, string user, string password, int proxyPort, string proxy) : base(urlApi, url, user, password, proxyPort, proxy)
+        public Balance(string urlApi, string url, string user, string password, int proxyPort = 0, string proxy = null) : base(urlApi, url, user, password, proxyPort, proxy)
         {
         }
         /// <summary>
@@ -29,7 +29,7 @@ namespace SW.Services.Balance
         /// <param name="token">Token de autenticacion.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public Balance(string urlApi, string token, int proxyPort, string proxy) : base(urlApi, token, proxyPort, proxy)
+        public Balance(string urlApi, string token, int proxyPort = 0, string proxy = null) : base(urlApi, token, proxyPort, proxy)
         {
         }
         /// <summary>
