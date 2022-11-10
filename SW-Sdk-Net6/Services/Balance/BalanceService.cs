@@ -19,7 +19,7 @@ namespace SW.Services.Balance
             {
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
-                return await handler.GetBalanceResponseAsync(Url, idUser is null ? _path : String.Format("/{0}/{1}", _path, idUser), headers, proxy);
+                return await handler.GetBalanceResponseAsync(UrlApi ?? Url, idUser is null ? _path : String.Format("{0}/{1}", _path, idUser), headers, proxy);
             }
             catch(Exception ex)
             {
@@ -34,7 +34,8 @@ namespace SW.Services.Balance
                 if (!ValidationHelper.ValidateBalanceRequest(idUser, stampCount, out string message)) throw new Exception(message);
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
-                return await handler.GetAsync(Url, String.Format("/{0}/{1}/{2}", idUser, action, stampCount), headers, proxy);
+                var body = JsonBodyHelper.SerializeBalance(comment);
+                return await handler.PostAsync(UrlApi ?? Url, String.Format("{0}/{1}/{2}/{3}", _path, idUser, action, stampCount), headers, proxy, body);
             }
             catch (Exception ex)
             {
