@@ -21,10 +21,10 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'restore'
-    restoreSolution: '**/SW-Sdk-Net6.sln'
+    restoreSolution: '**/SW-Sdk-Net6.csproj'
 - task: VSBuild@1
   inputs:
-    solution: '**\SW-Sdk-Net6.sln'
+    solution: '**\SW-Sdk-Net6.csproj'
     vsVersion: '16.0'
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
