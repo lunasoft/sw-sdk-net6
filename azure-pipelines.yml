@@ -9,10 +9,6 @@ trigger:
 pool:
   vmImage: Windows-2019
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
@@ -21,10 +17,11 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'restore'
-    restoreSolution: '**/SW-Sdk-Net6.sln'
+    restoreSolution: '**/SW-Sdk-Net6.csproj'
 - task: VSBuild@1
+  displayName: 'Build solution SW-Sdk-Net6.csproj'
   inputs:
-    solution: '**\SW-Sdk-Net6.sln'
+    solution: '**\SW-Sdk-Net6.csproj'
     vsVersion: '16.0'
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
