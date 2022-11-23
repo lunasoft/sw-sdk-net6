@@ -19,27 +19,32 @@ steps:
   displayName: 'Run a multi-line script'
 # Starter pipeline
 - task: DotNetCoreCLI@2
+  displayName: 'DotNet restore'
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
     feedsToUse: 'select'
 - task: DotNetCoreCLI@2
+  displayName: 'DotNet Build'
   inputs:
     command: 'build'
     projects: '**/*.csproj'
     arguments: '--configuration $(BuildConfiguration)'
 - task: NuGetCommand@2
+  displayName: 'NuGet pack'
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
 - task: NuGetCommand@2
+  displayName: 'NuGet Push'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: '45842131-226b-4c39-ab92-bb687dfdfca5'
 - task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact '
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
