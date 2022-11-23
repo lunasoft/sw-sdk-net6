@@ -18,54 +18,29 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 # Starter pipeline
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
-    restoreSolution: '**/SW-Sdk-Net6.csproj'
-- task: VSBuild@1
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '**\SW-Sdk-Net6.csproj'
-    vsVersion: '16.0'
-    platform: '$(BuildPlatform)'
-    configuration: '$(BuildConfiguration)'
-- task: VisualStudioTestPlatformInstaller@1
-  inputs:
-    packageFeedSelector: 'nugetOrg'
-    versionSelector: 'latestPreRelease'
-- task: VSTest@2
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*Test*.dll
-      **\*UT*.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      Write-Host "---->Add -rc version"
-      $path = 'SW-Sdk-Net6\SW.Sdk-Net6.nuspec'
-      $xml = [xml](Get-Content $path)
-      $antVersion = $xml.package.metadata.version
-      $xml.package.metadata.version = $antVersion+'-rc'
-      $xml.Save($path)
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: 'SW-Sdk-Net6/SW-Sdk-Net6.csproj'
-    packDestination: '$(Build.ArtifactStagingDirectory)\SW-Sdk-Net6'
+    packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
-- task: CopyFiles@2
+- task: NuGetCommand@2
   inputs:
-    Contents: '*.nupkg'
-    TargetFolder: '$(build.artifactstagingdirectory)'
-    CleanTargetFolder: true
-    OverWrite: true
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '45842131-226b-4c39-ab92-bb687dfdfca5'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'SW-Sdk-Net6-package'
+    ArtifactName: 'drop'
     publishLocation: 'Container'
-
-
