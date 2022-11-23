@@ -23,6 +23,9 @@ steps:
     packageType: 'sdk'
     version: '2.x'
     includePreviewVersions: true
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: '4.4.1'
 - task: DotNetCoreCLI@2
   displayName: 'DotNet restore'
   inputs:
