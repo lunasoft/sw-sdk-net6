@@ -21,7 +21,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '2,x'
+    version: '2.x'
     includePreviewVersions: true
 - task: DotNetCoreCLI@2
   displayName: 'DotNet restore'
