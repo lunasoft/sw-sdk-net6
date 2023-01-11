@@ -29,9 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update=".runsettings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-    </None>
     <None Update="Resources\Cfdi\cfdi40.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
