@@ -1,5 +1,7 @@
-﻿using SW.Services.Authentication;
+﻿using SW.Entities;
+using SW.Services.Authentication;
 using SW.Services.Cancellation;
+using SW.Services.Pdf;
 using SW.Services.Stamp;
 using SW.Services.Storage;
 
@@ -7,6 +9,15 @@ namespace SW.Helpers
 {
     internal class ResponseHelper
     {
+        internal static Response ToResponse(Exception ex)
+        {
+            return new()
+            {
+                Status = "error",
+                Message = ex.Message,
+                MessageDetail = GetErrorDetail(ex)
+            };
+        }
         internal static AuthenticationResponse ToAuthenticationResponse(Exception ex)
         {
             return new AuthenticationResponse()
