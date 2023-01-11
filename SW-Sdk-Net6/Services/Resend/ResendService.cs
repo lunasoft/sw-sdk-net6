@@ -6,12 +6,14 @@ namespace SW.Services.Resend
 {
     public class ResendService : Services
     {
-        private readonly ResponseHandler<Response> _handler;
-        public ResendService(string urlApi, string url, string user, string password, int proxyPort, string proxy) : base(urlApi, url, user, password, proxyPort, proxy)
+        private readonly RequestHandler<Response> _handler;
+        public ResendService(string urlApi, string url, string user, string password, int proxyPort, string proxy) 
+            : base(urlApi, url, user, password, proxyPort, proxy)
         {
             _handler = new();
         }
-        public ResendService(string urlApi, string token, int proxyPort, string proxy) : base(urlApi, token, proxyPort, proxy)
+        public ResendService(string urlApi, string token, int proxyPort, string proxy) 
+            : base(urlApi, token, proxyPort, proxy)
         {
             _handler = new();
         }

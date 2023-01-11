@@ -1,18 +1,21 @@
-﻿using SW.Helpers;
+﻿using SW.Handlers;
+using SW.Helpers;
 
 namespace SW.Services.Cancellation
 {
     public class CancellationService : Services
     {
-        private readonly CancellationResponseHandler _handler;
+        private readonly RequestHandler<CancellationResponse> _handler;
         private readonly string _path = "/cfdi33/cancel";
-        public CancellationService(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxyPort, proxy)
+        public CancellationService(string url, string user, string password, int proxyPort = 0, string proxy = null) 
+            : base(url, user, password, proxyPort, proxy)
         {
-            _handler = new CancellationResponseHandler();
+            _handler = new();
         }
-        public CancellationService(string url, string token, int proxyPort = 0, string proxy = null) : base(url, token, proxyPort, proxy)
+        public CancellationService(string url, string token, int proxyPort = 0, string proxy = null) 
+            : base(url, token, proxyPort, proxy)
         {
-            _handler = new CancellationResponseHandler();
+            _handler = new();
         }
         internal async Task<CancellationResponse> CancellationAsync(CancellationRequest folio)
         {

@@ -12,7 +12,8 @@ namespace SW.Services.Cancellation
         /// <param name="password">Contraseña.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public Cancellation(string url, string user, string password, int proxyPort = 0, string? proxy = null) : base(url, user, password, proxyPort, proxy)
+        public Cancellation(string url, string user, string password, int proxyPort = 0, string? proxy = null) 
+            : base(url, user, password, proxyPort, proxy)
         {
         }
         /// <summary>
@@ -22,7 +23,8 @@ namespace SW.Services.Cancellation
         /// <param name="token">Token de autenticación.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public Cancellation(string url, string token, int proxyPort = 0, string? proxy = null) : base(url, token, proxyPort, proxy)
+        public Cancellation(string url, string token, int proxyPort = 0, string? proxy = null) 
+            : base(url, token, proxyPort, proxy)
         {
         }
         /// <summary>

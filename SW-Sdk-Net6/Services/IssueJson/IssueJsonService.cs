@@ -1,4 +1,5 @@
-﻿using SW.Helpers;
+﻿using SW.Handlers;
+using SW.Helpers;
 using SW.Services.Stamp;
 
 namespace SW.Services.IssueJson
@@ -7,15 +8,17 @@ namespace SW.Services.IssueJson
     {
         private readonly string _path = "cfdi33/issue/json";
         private readonly string _contentType = "application/jsontoxml";
-        public IssueJsonService(string url, string user, string password, int proxyPort, string proxy) : base (url, user, password, proxyPort, proxy)
+        public IssueJsonService(string url, string user, string password, int proxyPort, string proxy) 
+            : base (url, user, password, proxyPort, proxy)
         {
         }
-        public IssueJsonService(string url, string token, int proxyPort, string proxy) : base (url, token, proxyPort, proxy)
+        public IssueJsonService(string url, string token, int proxyPort, string proxy) 
+            : base (url, token, proxyPort, proxy)
         {
         }
         internal async Task<StampResponseV1> IssueJsonV1Async(string json, StampVersion version, string customId = null, string[] email = null, bool pdf = false)
         {
-            StampResponseHandlerV1 handler = new();
+            RequestHandler<StampResponseV1> handler = new();
             try
             {
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
@@ -37,7 +40,7 @@ namespace SW.Services.IssueJson
         }
         internal async Task<StampResponseV2> IssueJsonV2Async(string json, StampVersion version, string customId = null, string[] email = null, bool pdf = false)
         {
-            StampResponseHandlerV2 handler = new();
+            RequestHandler<StampResponseV2> handler = new();
             try
             {
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
@@ -59,7 +62,7 @@ namespace SW.Services.IssueJson
         }
         internal async Task<StampResponseV3> IssueJsonV3Async(string json, StampVersion version, string customId = null, string[] email = null, bool pdf = false)
         {
-            StampResponseHandlerV3 handler = new();
+            RequestHandler<StampResponseV3> handler = new();
             try
             {
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);
@@ -81,7 +84,7 @@ namespace SW.Services.IssueJson
         }
         internal async Task<StampResponseV4> IssueJsonV4Async(string json, StampVersion version, string customId = null, string[] email = null, bool pdf = false)
         {
-            StampResponseHandlerV4 handler = new();
+            RequestHandler<StampResponseV4> handler = new();
             try
             {
                 var headers = await RequestHelper.SetupAuthHeaderAsync(this);

@@ -13,7 +13,8 @@ namespace SW.Services.Resend
         /// <param name="password">Contrasena.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public Resend(string urlApi, string url, string user, string password, int proxyPort = 0, string proxy = null) : base(urlApi, url, user, password, proxyPort, proxy)
+        public Resend(string urlApi, string url, string user, string password, int proxyPort = 0, string proxy = null) 
+            : base(urlApi, url, user, password, proxyPort, proxy)
         {
         }
         /// <summary>
@@ -23,7 +24,8 @@ namespace SW.Services.Resend
         /// <param name="token">Token de autenticacion.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public Resend(string urlApi, string token, int proxyPort = 0, string proxy = null) : base(urlApi, token, proxyPort, proxy)
+        public Resend(string urlApi, string token, int proxyPort = 0, string proxy = null) 
+            : base(urlApi, token, proxyPort, proxy)
         {
         }
         /// <summary>

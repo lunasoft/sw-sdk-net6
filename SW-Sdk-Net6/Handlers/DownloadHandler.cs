@@ -12,7 +12,7 @@ namespace SW.Handlers
 {
     internal class DownloadHandler<T> where T : Response, new()
     {
-        private ResponseHandlerExtended<T> _handler = new();
+        private ResponseHandler<T> _handler = new();
         internal async Task<T> DownloadFileAsync(string url, HttpClientHandler proxy)
         {
             try

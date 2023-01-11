@@ -1,19 +1,22 @@
-﻿using SW.Helpers;
+﻿using SW.Handlers;
+using SW.Helpers;
 
 namespace SW.Services.Stamp
 {
     public class StampService : Services
     {
         private readonly string _path = "/cfdi33";
-        public StampService(string url, string token, int proxyPort, string proxy) : base (url, token, proxyPort, proxy)
+        public StampService(string url, string token, int proxyPort, string proxy) 
+            : base (url, token, proxyPort, proxy)
         {
         }
-        public StampService(string url, string user, string password, int proxyPort, string proxy) : base(url, user, password, proxyPort, proxy)
+        public StampService(string url, string user, string password, int proxyPort, string proxy) 
+            : base(url, user, password, proxyPort, proxy)
         {
         }
         internal async Task<StampResponseV1> StampServiceV1Async(byte[] xml, bool isB64, StampAction action, StampVersion version, string customId = null, string[] email = null, bool pdf = false)
         {
-            StampResponseHandlerV1 handler = new();
+            RequestHandler<StampResponseV1> handler = new();
             try
             {
                 string path = String.Format("{0}/{1}/{2}/{3}", _path, action, StampResponseVersion.V1, isB64 ? "b64" : String.Empty);
@@ -37,7 +40,7 @@ namespace SW.Services.Stamp
         }
         internal async Task<StampResponseV2> StampServiceV2Async(byte[] xml, bool isB64, StampAction action, StampVersion version, string customId = null, string[] email = null, bool pdf = false)
         {
-            StampResponseHandlerV2 handler = new();
+            RequestHandler<StampResponseV2> handler = new();
             try
             {
                 string path = String.Format("{0}/{1}/{2}/{3}", _path, action, StampResponseVersion.V2, isB64 ? "b64" : String.Empty);
@@ -61,7 +64,7 @@ namespace SW.Services.Stamp
         }
         internal async Task<StampResponseV3> StampServiceV3Async(byte[] xml, bool isB64, StampAction action, StampVersion version, string customId = null, string[] email = null, bool pdf = false)
         {
-            StampResponseHandlerV3 handler = new();
+            RequestHandler<StampResponseV3> handler = new();
             try
             {
                 string path = String.Format("{0}/{1}/{2}/{3}", _path, action, StampResponseVersion.V3, isB64 ? "b64" : String.Empty);
@@ -85,7 +88,7 @@ namespace SW.Services.Stamp
         }
         internal async Task<StampResponseV4> StampServiceV4Async(byte[] xml, bool isB64, StampAction action, StampVersion version, string customId = null, string[] email = null, bool pdf = false)
         {
-            StampResponseHandlerV4 handler = new();
+            RequestHandler<StampResponseV4> handler = new();
             try
             {
                 string path = String.Format("{0}/{1}/{2}/{3}", _path, action, StampResponseVersion.V4, isB64 ? "b64" : String.Empty);

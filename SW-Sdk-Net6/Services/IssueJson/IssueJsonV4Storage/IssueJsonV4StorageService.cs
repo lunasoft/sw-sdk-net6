@@ -1,4 +1,5 @@
-﻿using SW.Helpers;
+﻿using SW.Handlers;
+using SW.Helpers;
 using SW.Services.Stamp;
 
 namespace SW.Services.IssueJson
@@ -8,17 +9,19 @@ namespace SW.Services.IssueJson
         private readonly string _urlApi;
         private readonly string _path = "/v4/cfdi33/issue/json";
         private readonly string _contentType = "application/jsontoxml";
-        public IssueJsonV4StorageService(string urlApi, string url, string user, string password, int proxyPort, string proxy) : base(url, user, password, proxyPort, proxy)
+        public IssueJsonV4StorageService(string urlApi, string url, string user, string password, int proxyPort, string proxy) 
+            : base(url, user, password, proxyPort, proxy)
         {
             _urlApi = urlApi;
         }
-        public IssueJsonV4StorageService(string urlApi, string url, string token, int proxyPort, string proxy) : base(url, token, proxyPort, proxy)
+        public IssueJsonV4StorageService(string urlApi, string url, string token, int proxyPort, string proxy) 
+            : base(url, token, proxyPort, proxy)
         {
             _urlApi = urlApi;
         }
         internal async Task<StampResponseV2> IssueJsonStorageServiceV2Async(string json, string customId = null, string[] email = null, bool pdf = false)
         {
-            StampResponseHandlerV2 handler = new();
+            RequestHandler<StampResponseV2> handler = new();
             try
             {
                 string path = String.Format("{0}/{1}", _path, StampResponseVersion.V2);

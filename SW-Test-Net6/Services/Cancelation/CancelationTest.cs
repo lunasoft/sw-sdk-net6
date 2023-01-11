@@ -1,7 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SW.Services.Cancellation;
+﻿using SW.Services.Cancellation;
 using SW.Test.Helpers;
-using Xunit;
 
 namespace SW.Test.Services.CancellationTest
 {

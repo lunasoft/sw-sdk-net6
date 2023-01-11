@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
   	  <AssemblyName>SW-sdk-Net6</AssemblyName>
-      <VersionPrefix>0.0.4.1</VersionPrefix>
+      <VersionPrefix>0.0.5.1</VersionPrefix>
       <TargetFramework>net6.0</TargetFramework>
       <RootNamespace>SW</RootNamespace>
       <ImplicitUsings>enable</ImplicitUsings>
@@ -30,6 +30,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 </Project>

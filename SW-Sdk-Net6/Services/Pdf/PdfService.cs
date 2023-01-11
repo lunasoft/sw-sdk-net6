@@ -6,7 +6,7 @@ namespace SW.Services.Pdf
 {
     public class PdfService : Services
     {
-        private readonly ResponseHandler<PdfResponse> _handler;
+        private readonly RequestHandler<PdfResponse> _handler;
         private readonly string _path = "/pdf/v1/api";
         public PdfService(string urlApi, string url, string user, string password, int proxyPort, string proxy) 
             : base(urlApi, url, user, password, proxyPort, proxy)
