@@ -17,6 +17,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="7.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,11 +26,9 @@
     <Folder Include="Resources\Xslt\" />
     <Folder Include="Services\Authentication\" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\SW-Sdk-Net6\SW-Sdk-Net6.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <None Update="Resources\Cfdi\cfdi40.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
