@@ -7,7 +7,7 @@ namespace SW.Services.Authentication
     {
         [DataMember]
         public AuthData Data { get; set; }
-        public partial class AuthData
+        public class AuthData
         {
             /// <summary>
             /// Token de autenticación.

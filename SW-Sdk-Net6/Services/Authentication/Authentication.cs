@@ -10,7 +10,8 @@
         /// <param name="password">Contraseña.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public Authentication(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxyPort, proxy)
+        public Authentication(string url, string user, string password, int proxyPort = 0, string proxy = null) 
+            : base(url, user, password, proxyPort, proxy)
         {
         }
         /// <summary>

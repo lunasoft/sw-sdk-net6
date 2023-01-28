@@ -13,7 +13,8 @@ namespace SW.Services.IssueJson
         /// <param name="password">Contraseña.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public IssueJsonV4Storage(string urlApi, string url, string user, string password, int proxyPort = 0, string proxy = null) : base(urlApi, url, user, password, proxyPort, proxy)
+        public IssueJsonV4Storage(string urlApi, string url, string user, string password, int proxyPort = 0, string proxy = null) 
+            : base(urlApi, url, user, password, proxyPort, proxy)
         {
         }
         /// <summary>
@@ -24,7 +25,8 @@ namespace SW.Services.IssueJson
         /// <param name="token">Token de autenticación.</param>
         /// <param name="proxyPort">Puerto Proxy.</param>
         /// <param name="proxy">Proxy.</param>
-        public IssueJsonV4Storage(string urlApi, string url, string token, int proxyPort = 0, string proxy = null) : base(urlApi, url, token, proxyPort, proxy)
+        public IssueJsonV4Storage(string urlApi, string url, string token, int proxyPort = 0, string proxy = null) 
+            : base(urlApi, url, token, proxyPort, proxy)
         {
         }
         /// <summary>

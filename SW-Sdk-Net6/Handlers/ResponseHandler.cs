@@ -1,120 +1,52 @@
 ﻿using SW.Entities;
 using SW.Helpers;
-using System.Text;
-using static System.Net.Mime.MediaTypeNames;
+using System.Net;
 
 namespace SW.Handlers
 {
-    internal class ResponseHandler<T> where T : Response, new() 
+    internal class ResponseHandler<T> where T : Response, new()
     {
-        private ResponseHandlerExtended<T> _handler;
-        internal ResponseHandler()
+        internal async Task<T> TryGetResponseAsync(HttpResponseMessage response)
         {
-            _handler = new ResponseHandlerExtended<T>();
-        }
-        private async Task<T> PostResponseAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy,
-            HttpContent? content = null)
-        {
-            HttpResponseMessage result;
             try
             {
-                using (HttpClient client = new HttpClient(proxy, false))
+                if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.BadRequest)
                 {
-                    client.BaseAddress = new Uri(url);
-                    foreach (var header in headers)
-                    {
-                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
-                    }
-                    result = await client.PostAsync(path, content);
+                    return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
                 }
-
-                return await _handler.TryGetResponseAsync(result);
+                return GetExceptionResponse(response);
             }
-            catch (HttpRequestException ex)
+            catch
             {
-                return _handler.GetExceptionResponse(ex);
+                return GetExceptionResponse(response);
             }
         }
-        private async Task<T> GetResponseAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy)
+        internal T GetExceptionResponse(Exception ex)
         {
-            HttpResponseMessage result;
-            try
+            return new T()
             {
-                using (HttpClient client = new HttpClient(proxy, false))
-                {
-                    client.BaseAddress = new Uri(url);
-                    foreach (var header in headers)
-                    {
-                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
-                    }
-                    result = await client.GetAsync(path);
-                }
-
-                return await _handler.TryGetResponseAsync(result);
-            }
-            catch (HttpRequestException ex)
+                Status = "error",
+                Message = ex.Message,
+                MessageDetail = ResponseHelper.GetErrorDetail(ex)
+            };
+        }
+        internal T GetExceptionResponse(HttpRequestException ex)
+        {
+            return new T()
             {
-                return _handler.GetExceptionResponse(ex);
-            }
+                Message = ex.Message,
+                Status = "error",
+                MessageDetail = ex.StackTrace
+            };
         }
-        internal T HandleException(Exception ex)
+        private T GetExceptionResponse(HttpResponseMessage response)
         {
-            return (T)ResponseHelper.ToResponse(ex);
-        }
-        /// <summary>
-        /// POST No Body.
-        /// </summary>
-        /// <param name="url">Base Url.</param>
-        /// <param name="path">Path.</param>
-        /// <param name="headers">Headers.</param>
-        /// <param name="proxy">Proxy settings.</param>
-        /// <returns></returns>
-        internal async Task<T> PostAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy)
-        {
-            return await PostResponseAsync(url, path, headers, proxy);
-        }
-        /// <summary>
-        /// POST JSON, accepts custom Content-Type.
-        /// </summary>
-        /// <param name="url">Base Url.</param>
-        /// <param name="path">Path.</param>
-        /// <param name="headers">Headers.</param>
-        /// <param name="proxy">Proxy settings.</param>
-        /// <param name="content">Json String.</param>
-        /// <param name="contentType">Custom Content-Type, default: application/json</param>
-        /// <returns></returns>
-        internal async Task<T> PostAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy, string content, string contentType = null)
-        {
-            var setContent = new StringContent(content, Encoding.UTF8, contentType ?? Application.Json);
-            return await PostResponseAsync(url, path, headers, proxy, setContent);
-        }
-        /// <summary>
-        /// POST Multipart Form.
-        /// </summary>
-        /// <param name="url">Base Url.</param>
-        /// <param name="path">Path.</param>
-        /// <param name="headers">Headers.</param>
-        /// <param name="proxy">Proxy settings.</param>
-        /// <param name="content">File Bytes.</param>
-        /// <returns></returns>
-        internal async Task<T> PostAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy, byte[] content)
-        {
-            var setContent = new MultipartFormDataContent();
-            var data = new ByteArrayContent(content);
-            setContent.Add(data, "xml", "xml");
-            return await PostResponseAsync(url, path, headers, proxy, setContent);
-        }
-        /// <summary>
-        /// GET
-        /// </summary>
-        /// <param name="url">Base Url.</param>
-        /// <param name="path">Path.</param>
-        /// <param name="headers">Headers.</param>
-        /// <param name="proxy">Proxy settings.</param>
-        /// <returns></returns>
-        internal async Task<T> GetAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy)
-        {
-            return await GetResponseAsync(url, path, headers, proxy);
+            return new T()
+            {
+                Message = ((int)response.StatusCode).ToString(),
+                Status = "error",
+                MessageDetail = response.ReasonPhrase
+            };
         }
     }
 }
