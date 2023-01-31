@@ -1,5 +1,6 @@
 ﻿using SW.Entities;
 using SW.Helpers;
+using System.Net.Http.Json;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -18,9 +19,10 @@ namespace SW.Handlers
             HttpResponseMessage result;
             try
             {
-                using (HttpClient client = new HttpClient(proxy, false))
+                using (HttpClient client = new(proxy, false))
                 {
                     client.BaseAddress = new Uri(url);
+                    client.Timeout = TimeSpan.FromSeconds(180);
                     foreach (var header in headers)
                     {
                         client.DefaultRequestHeaders.Add(header.Key, header.Value);
