@@ -37,7 +37,7 @@ namespace SW.Services.Issue
         /// <returns>Respuesta V1 de timbrado.</returns>    
         public async Task<StampResponseV1> StampV1Async(string xml, bool isB64 = false)
         {
-            return await StampServiceV1Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Issue, StampVersion.V3);
+            return await StampServiceV1Async(Encoding.UTF8.GetBytes(xml), StampAction.Issue, StampVersion.V3, isB64);
         }
         /// <summary>
         /// Servicio de Emision Timbrado de un CFDI en formato XML.
@@ -47,7 +47,7 @@ namespace SW.Services.Issue
         /// <returns>Respuesta V2 de timbrado.</returns> 
         public async Task<StampResponseV2> StampV2Async(string xml, bool isB64 = false)
         {
-            return await StampServiceV2Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Issue, StampVersion.V3);
+            return await StampServiceV2Async(Encoding.UTF8.GetBytes(xml), StampAction.Issue, StampVersion.V3, isB64);
         }
         /// <summary>
         /// Servicio de Emision Timbrado de un CFDI en formato XML.
@@ -57,7 +57,7 @@ namespace SW.Services.Issue
         /// <returns>Respuesta V3 de timbrado.</returns> 
         public async Task<StampResponseV3> StampV3Async(string xml, bool isB64 = false)
         {
-            return await StampServiceV3Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Issue, StampVersion.V3);
+            return await StampServiceV3Async(Encoding.UTF8.GetBytes(xml), StampAction.Issue, StampVersion.V3, isB64);
         }
         /// <summary>
         /// Servicio de Emision Timbrado de un CFDI en formato XML.
@@ -67,7 +67,7 @@ namespace SW.Services.Issue
         /// <returns>Respuesta V4 de timbrado.</returns> 
         public async Task<StampResponseV4> StampV4Async(string xml, bool isB64 = false)
         {
-            return await StampServiceV4Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Issue, StampVersion.V3);
+            return await StampServiceV4Async(Encoding.UTF8.GetBytes(xml), StampAction.Issue, StampVersion.V3, isB64);
         }
     }
 }

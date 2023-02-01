@@ -1,6 +1,9 @@
-﻿using SW.Handlers;
+﻿using SW.Entities;
+using SW.Handlers;
 using SW.Helpers;
 using SW.Services.Stamp;
+using System;
+using System.Runtime.CompilerServices;
 
 namespace SW.Services.IssueJson
 {
@@ -21,17 +24,8 @@ namespace SW.Services.IssueJson
             RequestHandler<StampResponseV1> handler = new();
             try
             {
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
-                if (version.Equals(StampVersion.V4))
-                {
-                    if (!ValidationHelper.ValidateCustomHeaders(customId, email, out string message))
-                    {
-                        throw new Exception(message);
-                    }
-                    headers = RequestHelper.SetupHeaders(headers, customId, email);
-                }
-                var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await handler.PostAsync(this.Url, String.Format("{0}/{1}/{2}", version, _path, StampResponseVersion.V1), headers, proxy, json, _contentType);
+                var request = await IssueJsonServiceAsync(version, StampResponseVersion.V1, _path, customId, email, pdf);
+                return await handler.PostAsync(Url, request.Path, request.Headers, request.Proxy, json, _contentType);
             }
             catch(Exception ex)
             {
@@ -43,17 +37,8 @@ namespace SW.Services.IssueJson
             RequestHandler<StampResponseV2> handler = new();
             try
             {
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
-                if (version.Equals(StampVersion.V4))
-                {
-                    if (!ValidationHelper.ValidateCustomHeaders(customId, email, out string message))
-                    {
-                        throw new Exception(message);
-                    }
-                    headers = RequestHelper.SetupHeaders(headers, customId, email);
-                }
-                var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await handler.PostAsync(this.Url, String.Format("{0}/{1}/{2}", version, _path, StampResponseVersion.V2), headers, proxy, json, _contentType);
+                var request = await IssueJsonServiceAsync(version, StampResponseVersion.V2, _path, customId, email, pdf);
+                return await handler.PostAsync(Url, request.Path, request.Headers, request.Proxy, json, _contentType);
             }
             catch (Exception ex)
             {
@@ -65,17 +50,8 @@ namespace SW.Services.IssueJson
             RequestHandler<StampResponseV3> handler = new();
             try
             {
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
-                if (version.Equals(StampVersion.V4))
-                {
-                    if (!ValidationHelper.ValidateCustomHeaders(customId, email, out string message))
-                    {
-                        throw new Exception(message);
-                    }
-                    headers = RequestHelper.SetupHeaders(headers, customId, email);
-                }
-                var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await handler.PostAsync(this.Url, String.Format("{0}/{1}/{2}", version, _path, StampResponseVersion.V3), headers, proxy, json, _contentType);
+                var request = await IssueJsonServiceAsync(version, StampResponseVersion.V3, _path, customId, email, pdf);
+                return await handler.PostAsync(Url, request.Path, request.Headers, request.Proxy, json, _contentType);
             }
             catch (Exception ex)
             {
@@ -87,22 +63,27 @@ namespace SW.Services.IssueJson
             RequestHandler<StampResponseV4> handler = new();
             try
             {
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
-                if (version.Equals(StampVersion.V4))
-                {
-                    if (!ValidationHelper.ValidateCustomHeaders(customId, email, out string message))
-                    {
-                        throw new Exception(message);
-                    }
-                    headers = RequestHelper.SetupHeaders(headers, customId, email);
-                }
-                var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await handler.PostAsync(this.Url, String.Format("{0}/{1}/{2}", version, _path, StampResponseVersion.V4), headers, proxy, json, _contentType);
+                var request = await IssueJsonServiceAsync(version, StampResponseVersion.V4, _path, customId, email, pdf);
+                return await handler.PostAsync(Url, request.Path, request.Headers, request.Proxy, json, _contentType);
             }
             catch (Exception ex)
             {
                 return handler.HandleException(ex);
             }
+        }
+        private async Task<Request> IssueJsonServiceAsync(StampVersion stampVersion, StampResponseVersion responseVersion, string path, string customId, string[] email, bool pdf)
+        {
+            var request = await RequestHelper.SetupRequestAsync(this);
+            request.Path = String.Format("{0}/{1}/{2}", stampVersion, path, responseVersion);
+            if (stampVersion.Equals(StampVersion.V4))
+            {
+                if (!ValidationHelper.ValidateCustomHeaders(customId, email, out string message))
+                {
+                    throw new Exception(message);
+                }
+                request.Headers = RequestHelper.SetupHeaders(request.Headers, customId, email, pdf);
+            }
+            return request;
         }
     }
 }
