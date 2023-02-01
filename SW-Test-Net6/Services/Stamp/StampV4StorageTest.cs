@@ -96,7 +96,7 @@ namespace SW.Test.Services.StampTest
             var customId = Guid.NewGuid().ToString();
             var response = await stamp.StampV2Async(xml, customId, false, true);
             xml = await BuildHelper.GetCfdi("cfdi40.xml", true, true);
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
             response = await stamp.StampV2Async(xml, customId, false, true);
             Assert.IsTrue(response.Status.Equals("error"));
             Assert.IsTrue(response.Message.Equals("CFDI3307 - Timbre duplicado. El customId proporcionado está duplicado."));
