@@ -40,7 +40,7 @@
         /// Servicio de recuperacion de XML por UUID. Adicional a las URL de descarga, se obtienen todos los datos extras correspondientes al comprobante timbrado.
         /// </summary>
         /// <param name="uuid">UUID del comprobante timbrado.</param>
-        /// <returns><see cref="StorageResponse"/></returns>
+        /// <returns><see cref="StorageExtraResponse"/></returns>
         public async Task<StorageExtraResponse> GetXmlExtrasAsync(Guid uuid)
         {
             return await RetrieveXmlExtrasAsync(uuid);

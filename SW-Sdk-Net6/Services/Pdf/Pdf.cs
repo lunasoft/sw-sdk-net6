@@ -33,7 +33,7 @@ namespace SW.Services.Pdf
         /// <param name="extras">Agrega datos adicionales en el PDF.</param>
         /// <param name="logo">Logo en B64.</param>
         /// <param name="isB64">Especifica si el string del CFDI se envía en B64.</param>
-        /// <returns>PdfResponse</returns>
+        /// <returns><see cref="PdfResponse"/></returns>
         public async Task<PdfResponse> GeneratePdfAsync(string xml, PdfTemplate template, Dictionary<string, string> extras = null, string logo = null, bool isB64 = false)
         {
             return await GeneratePdfServiceAsync(xml, template.ToString().ToLower(), extras, logo, isB64);
