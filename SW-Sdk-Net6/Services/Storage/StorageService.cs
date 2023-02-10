@@ -6,11 +6,11 @@ namespace SW.Services.Storage
     public class StorageService : Services
     {
         private readonly string _path = "/datawarehouse/v1/live";
-        public StorageService(string urlApi, string url, string user, string password, int proxyPort, string proxy) 
+        protected StorageService(string urlApi, string url, string user, string password, int proxyPort, string proxy) 
             : base(urlApi, url, user, password, proxyPort, proxy)
         {
         }
-        public StorageService(string urlApi, string token, int proxyPort, string proxy) 
+        protected StorageService(string urlApi, string token, int proxyPort, string proxy) 
             : base(urlApi, token, proxyPort, proxy)
         {
         }

@@ -3,14 +3,14 @@
     public class Services
     {
         private string _token;
-        private string _url;
-        private string _urlApi;
-        private string _user;
-        private string _password;
-        private string? _proxy;
-        private int _proxyPort;
+        private readonly string _url;
+        private readonly string _urlApi;
+        private readonly string _user;
+        private readonly string _password;
+        private readonly string? _proxy;
+        private readonly int _proxyPort;
         private DateTime _expirationDate;
-        private int _timeSession = 2;
+        private readonly int _timeSession = 2;
 
         internal string Token { get { return _token; } }
         internal string Url { get { return _url; } }
@@ -21,7 +21,7 @@
         internal int ProxyPort { get { return _proxyPort; } }
         internal DateTime ExpirationDate { get { return _expirationDate; } }
 
-        public Services(string url, string token, int proxyPort, string proxy)
+        protected Services(string url, string token, int proxyPort, string proxy)
         {
             _url = url;
             _token = token;
@@ -29,7 +29,7 @@
             _proxy = proxy;
             _proxyPort = proxyPort;
         }
-        public Services(string url, string user, string password, int proxyPort, string proxy)
+        protected Services(string url, string user, string password, int proxyPort, string proxy)
         {
             _url = url;
             _user = user;
@@ -37,7 +37,7 @@
             _proxy = proxy;
             _proxyPort = proxyPort;
         }
-        public Services(string urlApi, string url, string user, string password, int proxyPort, string proxy)
+        protected Services(string urlApi, string url, string user, string password, int proxyPort, string proxy)
         {
             _url = url;
             _urlApi = urlApi;
