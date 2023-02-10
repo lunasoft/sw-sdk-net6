@@ -9,12 +9,12 @@ namespace SW.Services.IssueJson
         private readonly string _urlApi;
         private readonly string _path = "/v4/cfdi33/issue/json";
         private readonly string _contentType = "application/jsontoxml";
-        public IssueJsonV4StorageService(string urlApi, string url, string user, string password, int proxyPort, string proxy) 
+        protected IssueJsonV4StorageService(string urlApi, string url, string user, string password, int proxyPort, string proxy) 
             : base(url, user, password, proxyPort, proxy)
         {
             _urlApi = urlApi;
         }
-        public IssueJsonV4StorageService(string urlApi, string url, string token, int proxyPort, string proxy) 
+        protected IssueJsonV4StorageService(string urlApi, string url, string token, int proxyPort, string proxy) 
             : base(url, token, proxyPort, proxy)
         {
             _urlApi = urlApi;

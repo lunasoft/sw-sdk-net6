@@ -1,6 +1,4 @@
 ﻿using SW.Entities;
-using System.IO;
-using System;
 using System.Net;
 
 namespace SW.Helpers

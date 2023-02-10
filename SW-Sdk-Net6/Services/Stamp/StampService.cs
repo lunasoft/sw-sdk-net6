@@ -7,11 +7,11 @@ namespace SW.Services.Stamp
     public class StampService : Services
     {
         private readonly string _path = "/cfdi33";
-        public StampService(string url, string token, int proxyPort, string proxy)
+        protected StampService(string url, string token, int proxyPort, string proxy)
             : base(url, token, proxyPort, proxy)
         {
         }
-        public StampService(string url, string user, string password, int proxyPort, string proxy)
+        protected StampService(string url, string user, string password, int proxyPort, string proxy)
             : base(url, user, password, proxyPort, proxy)
         {
         }

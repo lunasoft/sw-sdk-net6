@@ -8,12 +8,12 @@ namespace SW.Services.Pdf
     {
         private readonly RequestHandler<PdfResponse> _handler;
         private readonly string _path = "/pdf/v1/api";
-        public PdfService(string urlApi, string url, string user, string password, int proxyPort, string proxy) 
+        protected PdfService(string urlApi, string url, string user, string password, int proxyPort, string proxy) 
             : base(urlApi, url, user, password, proxyPort, proxy)
         {
             _handler = new();
         }
-        public PdfService(string urlApi, string token, int proxyPort, string proxy) 
+        protected PdfService(string urlApi, string token, int proxyPort, string proxy) 
             : base(urlApi, token, proxyPort, proxy)
         {
             _handler = new();

@@ -33,7 +33,7 @@ namespace SW.Services.Stamp
         /// </summary>
         /// <param name="xml">String del CFDI en formato XML.</param>
         /// <param name="isB64">Especifica si el XML esta en formato B64.</param>
-        /// <returns>Respuesta V1 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV1"/> Respuesta V1 de timbrado.</returns>
         public async Task<StampResponseV1> StampV1Async(string xml, bool isB64 = false)
         {
             return await StampServiceV1Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V3 ,isB64);
@@ -43,7 +43,7 @@ namespace SW.Services.Stamp
         /// </summary>
         /// <param name="xml">String del CFDI en formato XML.</param>
         /// <param name="isB64">Especifica si el XML esta en formato B64.</param>
-        /// <returns>Respuesta V2 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV2"/> Respuesta V2 de timbrado.</returns>
         public async Task<StampResponseV2> StampV2Async(string xml, bool isB64 = false)
         {
             return await StampServiceV2Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V3, isB64);
@@ -53,7 +53,7 @@ namespace SW.Services.Stamp
         /// </summary>
         /// <param name="xml">String del CFDI en formato XML.</param>
         /// <param name="isB64">Especifica si el XML esta en formato B64.</param>
-        /// <returns>Respuesta V3 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV3"/> Respuesta V3 de timbrado.</returns>
         public async Task<StampResponseV3> StampV3Async(string xml, bool isB64 = false)
         {
             return await StampServiceV3Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V3, isB64);
@@ -63,7 +63,7 @@ namespace SW.Services.Stamp
         /// </summary>
         /// <param name="xml">String del CFDI en formato XML.</param>
         /// <param name="isB64">Especifica si el XML esta en formato B64.</param>
-        /// <returns>Respuesta V4 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV4"/> Respuesta V4 de timbrado.</returns>
         public async Task<StampResponseV4> StampV4Async(string xml, bool isB64 = false)
         {
             return await StampServiceV4Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V3, isB64);

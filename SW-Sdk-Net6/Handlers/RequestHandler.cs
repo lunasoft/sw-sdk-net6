@@ -1,6 +1,4 @@
 ﻿using SW.Entities;
-using SW.Helpers;
-using System.Net.Http.Json;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -8,7 +6,7 @@ namespace SW.Handlers
 {
     internal class RequestHandler<T> where T : Response, new()
     {
-        private ResponseHandler<T> _handler;
+        private readonly ResponseHandler<T> _handler;
         internal RequestHandler()
         {
             _handler = new ResponseHandler<T>();
@@ -29,7 +27,6 @@ namespace SW.Handlers
                     }
                     result = await client.PostAsync(path, content);
                 }
-
                 return await _handler.TryGetResponseAsync(result);
             }
             catch (HttpRequestException ex)
@@ -42,7 +39,7 @@ namespace SW.Handlers
             HttpResponseMessage result;
             try
             {
-                using (HttpClient client = new HttpClient(proxy, false))
+                using (HttpClient client = new(proxy, false))
                 {
                     client.BaseAddress = new Uri(url);
                     foreach (var header in headers)
@@ -51,7 +48,6 @@ namespace SW.Handlers
                     }
                     result = await client.GetAsync(path);
                 }
-
                 return await _handler.TryGetResponseAsync(result);
             }
             catch (HttpRequestException ex)

@@ -10,38 +10,33 @@ namespace SW.Handlers
         {
             try
             {
-                if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.BadRequest)
+                if (IsSuccessStatusCode(response.StatusCode))
                 {
                     return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
                 }
                 return GetExceptionResponse(response);
             }
-            catch
+            catch (Exception ex)
             {
-                return GetExceptionResponse(response);
+                return GetExceptionResponse(ex);
             }
+        }
+        private static bool IsSuccessStatusCode(HttpStatusCode statusCode)
+        {
+            return statusCode == HttpStatusCode.OK || statusCode == HttpStatusCode.BadRequest || statusCode == HttpStatusCode.Unauthorized;
         }
         internal T GetExceptionResponse(Exception ex)
         {
-            return new T()
+            return new T
             {
                 Status = "error",
                 Message = ex.Message,
                 MessageDetail = ResponseHelper.GetErrorDetail(ex)
             };
         }
-        internal T GetExceptionResponse(HttpRequestException ex)
-        {
-            return new T()
-            {
-                Message = ex.Message,
-                Status = "error",
-                MessageDetail = ex.StackTrace
-            };
-        }
         private T GetExceptionResponse(HttpResponseMessage response)
         {
-            return new T()
+            return new T
             {
                 Message = ((int)response.StatusCode).ToString(),
                 Status = "error",

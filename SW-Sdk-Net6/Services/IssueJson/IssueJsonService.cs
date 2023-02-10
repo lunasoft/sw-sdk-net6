@@ -2,8 +2,6 @@
 using SW.Handlers;
 using SW.Helpers;
 using SW.Services.Stamp;
-using System;
-using System.Runtime.CompilerServices;
 
 namespace SW.Services.IssueJson
 {
@@ -11,11 +9,11 @@ namespace SW.Services.IssueJson
     {
         private readonly string _path = "cfdi33/issue/json";
         private readonly string _contentType = "application/jsontoxml";
-        public IssueJsonService(string url, string user, string password, int proxyPort, string proxy) 
+        protected IssueJsonService(string url, string user, string password, int proxyPort, string proxy) 
             : base (url, user, password, proxyPort, proxy)
         {
         }
-        public IssueJsonService(string url, string token, int proxyPort, string proxy) 
+        protected IssueJsonService(string url, string token, int proxyPort, string proxy) 
             : base (url, token, proxyPort, proxy)
         {
         }

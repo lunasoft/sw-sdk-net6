@@ -7,7 +7,7 @@ namespace SW.Services.Authentication
     {
         private readonly RequestHandler<AuthenticationResponse> _handler;
         private readonly string _path = "/security/authenticate";
-        public AuthenticationService(string url, string user, string password, int proxyPort = 0, string proxy = null) 
+        protected AuthenticationService(string url, string user, string password, int proxyPort = 0, string proxy = null) 
             : base(url, user, password, proxyPort, proxy)
         {
             _handler = new();

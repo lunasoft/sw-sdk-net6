@@ -56,8 +56,7 @@ namespace SW.Test.Services.IssueJsonTest
             var stamp = new IssueJsonV4(BuildHelper.UrlService, "Token");
             var response = await stamp.StampV4Async(String.Empty, Guid.NewGuid().ToString());
             Assert.IsTrue(response.Status.Equals("error"));
-            Assert.IsTrue(response.Message.Equals("401"));
-            Assert.IsTrue(response.MessageDetail.Equals("Unauthorized"));
+            Assert.IsTrue(response.Message.Contains("El token debe contener 3 partes"));
         }
         [TestMethod]
         public async Task IssueJsonV4_Auth_Error()
@@ -65,8 +64,7 @@ namespace SW.Test.Services.IssueJsonTest
             var stamp = new IssueJsonV4(BuildHelper.UrlService, BuildHelper.User, "Password");
             var response = await stamp.StampV4Async(String.Empty, Guid.NewGuid().ToString());
             Assert.IsTrue(response.Status.Equals("error"));
-            Assert.IsTrue(response.Message.Equals("401"));
-            Assert.IsTrue(response.MessageDetail.Equals("Unauthorized"));
+            Assert.IsTrue(response.Message.Contains("El token debe contener 3 partes"));
         }
         [TestMethod]
         public async Task IssueJsonV4_WrongUrl_Error()
