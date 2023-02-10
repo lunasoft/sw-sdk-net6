@@ -33,7 +33,7 @@ namespace SW.Services.Resend
         /// </summary>
         /// <param name="uuid">Folio del comprobante timbrado.</param>
         /// <param name="email">Listado de correos a los que se har el reenvío. (Max. 5).</param>
-        /// <returns>Response.</returns>
+        /// <returns><see cref="Response"/></returns>
         public async Task<Response> ResendEmail(Guid uuid, string[] email)
         {
             return await ResendEmailServiceAsync(uuid, email);

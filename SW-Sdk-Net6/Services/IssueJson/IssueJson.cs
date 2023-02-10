@@ -32,7 +32,7 @@ namespace SW.Services.IssueJson
         /// Servicio de Emisión Timbrado de un CFDI en formato JSON.
         /// </summary>
         /// <param name="json">String del CFDI en formato JSON.</param>
-        /// <returns>Respuesta V1 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV1"/> Respuesta V1 de timbrado.</returns>
         public async Task<StampResponseV1> StampV1Async(string json)
         {
             return await IssueJsonV1Async(json, StampVersion.V3);
@@ -41,7 +41,7 @@ namespace SW.Services.IssueJson
         /// Servicio de Emisión Timbrado de un CFDI en formato JSON.
         /// </summary>
         /// <param name="json">String del CFDI en formato JSON.</param>
-        /// <returns>Respuesta V2 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV2"/> Respuesta V2 de timbrado.</returns>
         public async Task<StampResponseV2> StampV2Async(string json)
         {
             return await IssueJsonV2Async(json, StampVersion.V3);
@@ -50,7 +50,7 @@ namespace SW.Services.IssueJson
         /// Servicio de Emisión Timbrado de un CFDI en formato JSON.
         /// </summary>
         /// <param name="json">String del CFDI en formato JSON.</param>
-        /// <returns>Respuesta V3 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV3"/> Respuesta V3 de timbrado.</returns>
         public async Task<StampResponseV3> StampV3Async(string json)
         {
             return await IssueJsonV3Async(json, StampVersion.V3);
@@ -59,7 +59,7 @@ namespace SW.Services.IssueJson
         /// Servicio de Emisión Timbrado de un CFDI en formato JSON.
         /// </summary>
         /// <param name="json">String del CFDI en formato JSON.</param>
-        /// <returns>Respuesta V4 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV4"/> Respuesta V4 de timbrado.</returns>
         public async Task<StampResponseV4> StampV4Async(string json)
         {
             return await IssueJsonV4Async(json, StampVersion.V3);

@@ -8,13 +8,13 @@ namespace SW.Services.Stamp
         private readonly RequestHandler<StampResponseV2> _handler;
         private readonly string _urlApi;
         private readonly string _path = "/v4/cfdi33";
-        public StampV4StorageService(string urlApi, string url, string user, string password, int proxyPort, string proxy) 
+        protected StampV4StorageService(string urlApi, string url, string user, string password, int proxyPort, string proxy) 
             : base(url, user, password, proxyPort, proxy)
         {
             _urlApi = urlApi;
             _handler = new();
         }
-        public StampV4StorageService(string urlApi, string url, string token, int proxyPort, string proxy) 
+        protected StampV4StorageService(string urlApi, string url, string token, int proxyPort, string proxy) 
             : base(url, token, proxyPort, proxy)
         {
             _urlApi = urlApi;

@@ -36,7 +36,7 @@ namespace SW.Services.IssueJson
         /// <param name="json">String del CFDI en formato JSON.</param>
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
         /// <param name="pdf">Especifica si se genera el PDF en el proceso, si es true, se almacena en storage.</param>
-        /// <returns>Respuesta V2 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV2"/> Respuesta V2 de timbrado.</returns>
         public async Task<StampResponseV2> StampV2Async(string json, string customId, bool pdf = false)
         {
             return await IssueJsonStorageServiceV2Async(json, customId, null, pdf);
@@ -48,7 +48,7 @@ namespace SW.Services.IssueJson
         /// <param name="json">String del CFDI en formato JSON.</param>
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
         /// <param name="email">Listado de correos, máximo 5, a los cuales se les hara el envío del XML y PDF.</param>
-        /// <returns>Respuesta V2 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV2"/> Respuesta V2 de timbrado.</returns>
         public async Task<StampResponseV2> StampV2Async(string json, string customId, string[] email)
         {
             return await IssueJsonStorageServiceV2Async(json, customId, email);

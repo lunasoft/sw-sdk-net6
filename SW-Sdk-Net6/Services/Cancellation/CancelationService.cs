@@ -7,12 +7,12 @@ namespace SW.Services.Cancellation
     {
         private readonly RequestHandler<CancellationResponse> _handler;
         private readonly string _path = "/cfdi33/cancel";
-        public CancellationService(string url, string user, string password, int proxyPort = 0, string proxy = null) 
+        protected CancellationService(string url, string user, string password, int proxyPort = 0, string proxy = null) 
             : base(url, user, password, proxyPort, proxy)
         {
             _handler = new();
         }
-        public CancellationService(string url, string token, int proxyPort = 0, string proxy = null) 
+        protected CancellationService(string url, string token, int proxyPort = 0, string proxy = null) 
             : base(url, token, proxyPort, proxy)
         {
             _handler = new();

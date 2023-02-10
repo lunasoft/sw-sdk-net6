@@ -34,7 +34,7 @@ namespace SW.Services.IssueJson
         /// <param name="json">String del CFDI en formato JSON.</param>
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
         /// <param name="pdf">Especifica si se genera el PDF en el proceso, si es true, se almacena en storage.</param>
-        /// <returns>Respuesta V1 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV1"/> Respuesta V1 de timbrado.</returns>
         public async Task<StampResponseV1> StampV1Async(string json, string customId, bool pdf = false)
         {
             return await IssueJsonV1Async(json, StampVersion.V4, customId, null, pdf);
@@ -45,7 +45,7 @@ namespace SW.Services.IssueJson
         /// <param name="json">String del CFDI en formato JSON.</param>
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
         /// <param name="email">Listado de correos, máximo 5, a los cuales se les hara el envío del XML y PDF.</param>
-        /// <returns>Respuesta V1 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV1"/> Respuesta V1 de timbrado.</returns>
         public async Task<StampResponseV1> StampV1Async(string json, string customId, string[] email)
         {
             return await IssueJsonV1Async(json, StampVersion.V4, customId, email);
@@ -56,7 +56,7 @@ namespace SW.Services.IssueJson
         /// <param name="json">String del CFDI en formato JSON.</param>
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
         /// <param name="pdf">Especifica si se genera el PDF en el proceso, si es true, se almacena en storage.</param>
-        /// <returns>Respuesta V2 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV2"/> Respuesta V2 de timbrado.</returns>
         public async Task<StampResponseV2> StampV2Async(string json, string customId, bool pdf = false)
         {
             return await IssueJsonV2Async(json, StampVersion.V4, customId, null, pdf);
@@ -67,7 +67,7 @@ namespace SW.Services.IssueJson
         /// <param name="json">String del CFDI en formato JSON.</param>
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
         /// <param name="email">Listado de correos, máximo 5, a los cuales se les hara el envío del XML y PDF.</param>
-        /// <returns>Respuesta V2 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV2"/> Respuesta V2 de timbrado.</returns>
         public async Task<StampResponseV2> StampV2Async(string json, string customId, string[] email)
         {
             return await IssueJsonV2Async(json, StampVersion.V4, customId, email);
@@ -78,7 +78,7 @@ namespace SW.Services.IssueJson
         /// <param name="json">String del CFDI en formato JSON.</param>
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
         /// <param name="pdf">Especifica si se genera el PDF en el proceso, si es true, se almacena en storage.</param>
-        /// <returns>Respuesta V3 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV3"/>Respuesta V3 de timbrado.</returns>
         public async Task<StampResponseV3> StampV3Async(string json, string customId, bool pdf = false)
         {
             return await IssueJsonV3Async(json, StampVersion.V4, customId, null, pdf);
@@ -89,7 +89,7 @@ namespace SW.Services.IssueJson
         /// <param name="json">String del CFDI en formato JSON.</param>
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
         /// <param name="email">Listado de correos, máximo 5, a los cuales se les hara el envío del XML y PDF.</param>
-        /// <returns>Respuesta V3 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV3"/>Respuesta V3 de timbrado.</returns>
         public async Task<StampResponseV3> StampV3Async(string json, string customId, string[] email)
         {
             return await IssueJsonV3Async(json, StampVersion.V4, customId, email);
@@ -100,7 +100,7 @@ namespace SW.Services.IssueJson
         /// <param name="json">String del CFDI en formato JSON.</param>
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
         /// <param name="pdf">Especifica si se genera el PDF en el proceso, si es true, se almacena en storage.</param>
-        /// <returns>Respuesta V4 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV4"/>Respuesta V4 de timbrado.</returns>
         public async Task<StampResponseV4> StampV4Async(string json, string customId, bool pdf = false)
         {
             return await IssueJsonV4Async(json, StampVersion.V4, customId, null, pdf);
@@ -111,7 +111,7 @@ namespace SW.Services.IssueJson
         /// <param name="json">String del CFDI en formato JSON.</param>
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
         /// <param name="email">Listado de correos, máximo 5, a los cuales se les hara el envío del XML y PDF.</param>
-        /// <returns>Respuesta V4 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV4"/>Respuesta V4 de timbrado.</returns>
         public async Task<StampResponseV4> StampV4Async(string json, string customId, string[] email)
         {
             return await IssueJsonV4Async(json, StampVersion.V4, customId, email);

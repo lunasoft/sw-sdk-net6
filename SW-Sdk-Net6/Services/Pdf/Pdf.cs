@@ -46,7 +46,7 @@ namespace SW.Services.Pdf
         /// <param name="extras">Agrega datos adicionales en el PDF.</param>
         /// <param name="logo">Logo en B64.</param>
         /// <param name="isB64">Especifica si el string del CFDI se envía en B64.</param>
-        /// <returns>PdfResponse</returns>
+        /// <returns><see cref="PdfResponse"/></returns>
         public async Task<PdfResponse> GeneratePdfAsync(string xml, string template, Dictionary<string, string> extras = null, string logo = null, bool isB64 = false)
         {
             return await GeneratePdfServiceAsync(xml, template, extras, logo, isB64);
@@ -55,7 +55,7 @@ namespace SW.Services.Pdf
         /// Servicio de regeneración de PDF. 
         /// </summary>
         /// <param name="uuid">Folio del comprobante timbrado al cual se le intentará regenerar el PDF.</param>
-        /// <returns>Response</returns>
+        /// <returns><see cref="Response"/></returns>
         public async Task<Response> RegeneratePdfAsync(Guid uuid)
         {
             return await RegeneratePdfServiceAsync(uuid);

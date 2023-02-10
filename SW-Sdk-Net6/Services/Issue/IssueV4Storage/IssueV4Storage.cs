@@ -39,7 +39,7 @@ namespace SW.Services.Issue
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
         /// <param name="pdf">Especifica si se genera el PDF en el proceso, si es true, se almacena en storage.</param>
         /// <param name="isB64">Especifica si el XML se envía en formato B64.</param>
-        /// <returns>Respuesta V2 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV2"/> Respuesta V2 de timbrado.</returns>
         public async Task<StampResponseV2> StampV2Async(string xml, string customId, bool pdf = false, bool isB64 = false)
         {
             return await StampStorageServiceV2Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Issue, customId, null, pdf);
@@ -52,7 +52,7 @@ namespace SW.Services.Issue
         /// <param name="customId">Identificador unico asignado al comprobante.</param>
         /// <param name="email">Listado de correos, máximo 5, a los cuales se les hara el envío del XML y PDF.</param>
         /// <param name="isB64">Especifica si el XML se envía en formato B64.</param>
-        /// <returns>Respuesta V2 de timbrado.</returns>
+        /// <returns><see cref="StampResponseV2"/> Respuesta V2 de timbrado.</returns>
         public async Task<StampResponseV2> StampV2Async(string xml, string customId, string[] email, bool isB64 = false)
         {
             return await StampStorageServiceV2Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Issue, customId, email);
