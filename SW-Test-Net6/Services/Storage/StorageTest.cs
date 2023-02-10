@@ -65,8 +65,7 @@ namespace SW.Test.Services.StorageTest
             Storage storage = new(BuildHelper.UrlApi, "token");
             var response = await storage.GetXmlAsync(Guid.Parse("005ee4ad-1000-4db6-8806-123491c2253e"));
             Assert.IsTrue(response.Status.Equals("error"));
-            Assert.IsTrue(response.Message.Equals("401"));
-            Assert.IsTrue(response.MessageDetail.Equals("Unauthorized"));
+            Assert.IsTrue(response.Message.Contains("El token debe contener 3 partes"));
         }
         [TestMethod]
         public async Task Storage_Auth_Error()
@@ -74,8 +73,7 @@ namespace SW.Test.Services.StorageTest
             Storage storage = new(BuildHelper.UrlApi, BuildHelper.UrlService, BuildHelper.User, "password");
             var response = await storage.GetXmlAsync(Guid.Parse("005ee4ad-1000-4db6-8806-123491c2253e"));
             Assert.IsTrue(response.Status.Equals("error"));
-            Assert.IsTrue(response.Message.Equals("401"));
-            Assert.IsTrue(response.MessageDetail.Equals("Unauthorized"));
+            Assert.IsTrue(response.Message.Contains("AU4101 - El token proporcionado viene vacio."));
         }
         [TestMethod]
         public async Task StorageExtras_Token_Error()
@@ -83,8 +81,7 @@ namespace SW.Test.Services.StorageTest
             Storage storage = new(BuildHelper.UrlApi, "token");
             var response = await storage.GetXmlExtrasAsync(Guid.Parse("005ee4ad-1000-4db6-8806-123491c2253e"));
             Assert.IsTrue(response.Status.Equals("error"));
-            Assert.IsTrue(response.Message.Equals("401"));
-            Assert.IsTrue(response.MessageDetail.Equals("Unauthorized"));
+            Assert.IsTrue(response.Message.Contains("El token debe contener 3 partes"));
         }
         [TestMethod]
         public async Task StorageExtras_Auth_Error()
@@ -92,8 +89,7 @@ namespace SW.Test.Services.StorageTest
             Storage storage = new(BuildHelper.UrlApi, BuildHelper.UrlService, BuildHelper.User, "password");
             var response = await storage.GetXmlExtrasAsync(Guid.Parse("005ee4ad-1000-4db6-8806-123491c2253e"));
             Assert.IsTrue(response.Status.Equals("error"));
-            Assert.IsTrue(response.Message.Equals("401"));
-            Assert.IsTrue(response.MessageDetail.Equals("Unauthorized"));
+            Assert.IsTrue(response.Message.Contains("AU4101 - El token proporcionado viene vacio."));
         }
         [TestMethod]
         public async Task Storage_NotFound_Error()

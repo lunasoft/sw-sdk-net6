@@ -70,8 +70,7 @@ namespace SW.Test.Services.StampTest
             var stamp = new StampV4(BuildHelper.UrlService, "Token");
             var response = await stamp.StampV4Async(String.Empty, Guid.NewGuid().ToString());
             Assert.IsTrue(response.Status.Equals("error"));
-            Assert.IsTrue(response.Message.Equals("401"));
-            Assert.IsTrue(response.MessageDetail.Equals("Unauthorized"));
+            Assert.IsTrue(response.Message.Contains("El token debe contener 3 partes"));
         }
         [TestMethod]
         public async Task StampV4_Auth_Error()
@@ -80,8 +79,7 @@ namespace SW.Test.Services.StampTest
             var xml = await BuildHelper.GetCfdi("cfdi40.xml", false, true);
             var response = await stamp.StampV4Async(xml, Guid.NewGuid().ToString());
             Assert.IsTrue(response.Status.Equals("error"));
-            Assert.IsTrue(response.Message.Equals("401"));
-            Assert.IsTrue(response.MessageDetail.Equals("Unauthorized"));
+            Assert.IsTrue(response.Message.Contains("El token debe contener 3 partes"));
         }
         [TestMethod]
         public async Task StampV4_WrongUrl_Error()

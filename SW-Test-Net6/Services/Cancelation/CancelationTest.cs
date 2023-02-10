@@ -155,8 +155,7 @@ namespace SW.Test.Services.CancellationTest
             };
             var response = await cancelation.CancelByUuidAsync(request);
             Assert.IsTrue(response.Status.Equals("error"));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Message));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.MessageDetail));
+            Assert.IsTrue(response.Message.Contains("El token debe contener 3 partes"));
         }
         [TestMethod]
         public async Task CancellationUuid_Auth_Error()
@@ -170,8 +169,7 @@ namespace SW.Test.Services.CancellationTest
             };
             var response = await cancelation.CancelByUuidAsync(request);
             Assert.IsTrue(response.Status.Equals("error"));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.Message));
-            Assert.IsTrue(!String.IsNullOrEmpty(response.MessageDetail));
+            Assert.IsTrue(response.Message.Contains("El token debe contener 3 partes"));
         }
         [TestMethod]
         public async Task CancellationUuid_InvalidMotivo_Error()
