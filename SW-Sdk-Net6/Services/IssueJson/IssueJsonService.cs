@@ -2,8 +2,6 @@
 using SW.Handlers;
 using SW.Helpers;
 using SW.Services.Stamp;
-using System;
-using System.Runtime.CompilerServices;
 
 namespace SW.Services.IssueJson
 {

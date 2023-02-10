@@ -10,15 +10,15 @@ namespace SW.Handlers
         {
             try
             {
-                if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.BadRequest)
+                if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode.Equals(HttpStatusCode.Unauthorized))
                 {
                     return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
                 }
                 return GetExceptionResponse(response);
             }
-            catch
+            catch (Exception ex)
             {
-                return GetExceptionResponse(response);
+                return GetExceptionResponse(ex);
             }
         }
         internal T GetExceptionResponse(Exception ex)
@@ -28,15 +28,6 @@ namespace SW.Handlers
                 Status = "error",
                 Message = ex.Message,
                 MessageDetail = ResponseHelper.GetErrorDetail(ex)
-            };
-        }
-        internal T GetExceptionResponse(HttpRequestException ex)
-        {
-            return new T()
-            {
-                Message = ex.Message,
-                Status = "error",
-                MessageDetail = ex.StackTrace
             };
         }
         private T GetExceptionResponse(HttpResponseMessage response)
