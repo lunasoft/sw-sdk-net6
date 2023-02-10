@@ -38,7 +38,7 @@ namespace SW.Services.Stamp
         /// <returns>Respuesta V1 de timbrado.</returns>
         public async Task<StampResponseV1> StampV1Async(string xml, string customId, bool pdf = false, bool isB64 = false)
         {
-            return await StampServiceV1Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp, StampVersion.V4, customId, null, pdf);
+            return await StampServiceV1Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V4, isB64, customId, null, pdf);
         }
         /// <summary>
         /// Servicio de Timbrado V4 de un CFDI sellado en formato XML. Recibe un Custom ID y un array de correos para el reenvio del XML y el PDF.
@@ -50,7 +50,7 @@ namespace SW.Services.Stamp
         /// <returns>Respuesta V1 de timbrado.</returns>
         public async Task<StampResponseV1> StampV1Async(string xml, string customId, string[] email, bool isB64 = false)
         {
-            return await StampServiceV1Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp, StampVersion.V4, customId, email);
+            return await StampServiceV1Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V4, isB64, customId, email);
         }
         /// <summary>
         /// Servicio de Timbrado V4 de un CFDI sellado en formato XML. Recibe un Custom ID y puede realizar el guardado del PDF.
@@ -62,7 +62,7 @@ namespace SW.Services.Stamp
         /// <returns>Respuesta V2 de timbrado.</returns>
         public async Task<StampResponseV2> StampV2Async(string xml, string customId, bool pdf = false, bool isB64 = false)
         {
-            return await StampServiceV2Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp, StampVersion.V4, customId, null, pdf);
+            return await StampServiceV2Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V4, isB64, customId, null, pdf);
         }
         /// <summary>
         /// Servicio de Timbrado V4 que recibe un Custom ID y un array de correos para el reenvio del XML y el PDF del CFDI.
@@ -74,7 +74,7 @@ namespace SW.Services.Stamp
         /// <returns>Respuesta V2 de timbrado.</returns>
         public async Task<StampResponseV2> StampV2Async(string xml, string customId, string[] email, bool isB64 = false)
         {
-            return await StampServiceV2Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp, StampVersion.V4, customId, email);
+            return await StampServiceV2Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V4, isB64, customId, email);
         }
         /// <summary>
         /// Servicio de Timbrado V4 de un CFDI sellado en formato XML. Recibe un Custom ID y puede realizar el guardado del PDF.
@@ -86,7 +86,7 @@ namespace SW.Services.Stamp
         /// <returns>Respuesta V3 de timbrado.</returns>
         public async Task<StampResponseV3> StampV3Async(string xml, string customId, bool pdf = false, bool isB64 = false)
         {
-            return await StampServiceV3Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp, StampVersion.V4, customId, null, pdf);
+            return await StampServiceV3Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V4, isB64, customId, null, pdf);
         }
         /// <summary>
         /// Servicio de Timbrado V4 que recibe un Custom ID y un array de correos para el reenvio del XML y el PDF del CFDI.
@@ -98,7 +98,7 @@ namespace SW.Services.Stamp
         /// <returns>Respuesta V3 de timbrado.</returns>
         public async Task<StampResponseV3> StampV3Async(string xml, string customId, string[] email, bool isB64 = false)
         {
-            return await StampServiceV3Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp, StampVersion.V4, customId, email);
+            return await StampServiceV3Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V4, isB64, customId, email);
         }
         /// <summary>
         /// Servicio de Timbrado V4 de un CFDI sellado en formato XML. Recibe un Custom ID y puede realizar el guardado del PDF.
@@ -110,7 +110,7 @@ namespace SW.Services.Stamp
         /// <returns>Respuesta V4 de timbrado.</returns>
         public async Task<StampResponseV4> StampV4Async(string xml, string customId, bool pdf = false, bool isB64 = false)
         {
-            return await StampServiceV4Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp, StampVersion.V4, customId, null, pdf);
+            return await StampServiceV4Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V4, isB64, customId, null, pdf);
         }
         /// <summary>
         /// Servicio de Timbrado V4 que recibe un Custom ID y un array de correos para el reenvio del XML y el PDF del CFDI.
@@ -122,7 +122,7 @@ namespace SW.Services.Stamp
         /// <returns>Respuesta V4 de timbrado.</returns>
         public async Task<StampResponseV4> StampV4Async(string xml, string customId, string[] email, bool isB64 = false)
         {
-            return await StampServiceV4Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp, StampVersion.V4, customId, email);
+            return await StampServiceV4Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V4, isB64, customId, email);
         }
     }
 }

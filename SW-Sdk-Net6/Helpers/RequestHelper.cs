@@ -1,9 +1,21 @@
-﻿using System.Net;
+﻿using SW.Entities;
+using System.IO;
+using System;
+using System.Net;
 
 namespace SW.Helpers
 {
     internal class RequestHelper
     {
+        internal static async Task<Request> SetupRequestAsync(Services.Services services)
+        {
+            Request request = new()
+            {
+                Headers = await SetupAuthHeaderAsync(services),
+                Proxy = ProxySettings(services.Proxy, services.ProxyPort)
+            };
+            return request;
+        }
         internal static HttpClientHandler ProxySettings(string proxy, int proxyPort)
         {
             if (!string.IsNullOrEmpty(proxy))

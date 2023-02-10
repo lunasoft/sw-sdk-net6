@@ -36,7 +36,7 @@ namespace SW.Services.Stamp
         /// <returns><see cref="StampResponseV1"/> Respuesta V1 de timbrado.</returns>
         public async Task<StampResponseV1> StampV1Async(string xml, bool isB64 = false)
         {
-            return await StampServiceV1Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp, StampVersion.V3);
+            return await StampServiceV1Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V3 ,isB64);
         }
         /// <summary>
         /// Servicio de Timbrado de un CFDI sellado en formato XML.
@@ -46,7 +46,7 @@ namespace SW.Services.Stamp
         /// <returns><see cref="StampResponseV2"/> Respuesta V2 de timbrado.</returns>
         public async Task<StampResponseV2> StampV2Async(string xml, bool isB64 = false)
         {
-            return await StampServiceV2Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp, StampVersion.V3);
+            return await StampServiceV2Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V3, isB64);
         }
         /// <summary>
         /// Servicio de Timbrado de un CFDI sellado en formato XML.
@@ -56,7 +56,7 @@ namespace SW.Services.Stamp
         /// <returns><see cref="StampResponseV3"/> Respuesta V3 de timbrado.</returns>
         public async Task<StampResponseV3> StampV3Async(string xml, bool isB64 = false)
         {
-            return await StampServiceV3Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp, StampVersion.V3);
+            return await StampServiceV3Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V3, isB64);
         }
         /// <summary>
         /// Servicio de Timbrado de un CFDI sellado en formato XML.
@@ -66,7 +66,7 @@ namespace SW.Services.Stamp
         /// <returns><see cref="StampResponseV4"/> Respuesta V4 de timbrado.</returns>
         public async Task<StampResponseV4> StampV4Async(string xml, bool isB64 = false)
         {
-            return await StampServiceV4Async(Encoding.UTF8.GetBytes(xml), isB64, StampAction.Stamp, StampVersion.V3);
+            return await StampServiceV4Async(Encoding.UTF8.GetBytes(xml), StampAction.Stamp, StampVersion.V3, isB64);
         }
     }
 }
