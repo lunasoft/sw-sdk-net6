@@ -1,6 +1,4 @@
 ﻿using SW.Entities;
-using SW.Helpers;
-using SW.Services.Stamp;
 using System.Net;
 
 namespace SW.Handlers
