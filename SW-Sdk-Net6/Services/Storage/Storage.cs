@@ -31,7 +31,7 @@
         /// tal como el XML timbrado, Acuse de CFDI, Acuse de cancelación, PDF y Addenda.
         /// </summary>
         /// <param name="uuid">UUID del comprobante timbrado.</param>
-        /// <returns>StorageResponse</returns>
+        /// <returns><see cref="StorageResponse"/></returns>
         public async Task<StorageResponse> GetXmlAsync(Guid uuid)
         {
             return await RetrieveXmlAsync(uuid);
@@ -40,7 +40,7 @@
         /// Servicio de recuperacion de XML por UUID. Adicional a las URL de descarga, se obtienen todos los datos extras correspondientes al comprobante timbrado.
         /// </summary>
         /// <param name="uuid">UUID del comprobante timbrado.</param>
-        /// <returns>StorageExtraResponse</returns>
+        /// <returns><see cref="StorageResponse"/></returns>
         public async Task<StorageExtraResponse> GetXmlExtrasAsync(Guid uuid)
         {
             return await RetrieveXmlExtrasAsync(uuid);
