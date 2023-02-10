@@ -1,27 +1,20 @@
 ﻿using SW.Entities;
 using SW.Helpers;
 using SW.Services.Stamp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SW.Handlers
 {
     internal class DownloadHandler<T> where T : Response, new()
     {
-        private ResponseHandler<T> _handler = new();
+        private readonly ResponseHandler<T> _handler = new();
         internal async Task<T> DownloadFileAsync(string url, HttpClientHandler proxy)
         {
             try
             {
-                using (HttpClient client = new(proxy))
-                {
-                    var response = await client.GetAsync(url);
-                    return await TryGetContentAsync(response);
-                }
+                using HttpClient client = new(proxy);
+                var response = await client.GetAsync(url);
+                return await TryGetContentAsync(response);
             }
             catch (HttpRequestException ex)
             {
