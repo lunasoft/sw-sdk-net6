@@ -1,6 +1,7 @@
 ﻿using SW.Entities;
 using SW.Helpers;
 using System.Net;
+using System.Text.Json;
 
 namespace SW.Handlers
 {
@@ -12,7 +13,8 @@ namespace SW.Handlers
             {
                 if (IsSuccessStatusCode(response.StatusCode))
                 {
-                    return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+                    return await JsonSerializer.DeserializeAsync<T>(await response.Content.ReadAsStreamAsync(), 
+                                                                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 }
                 return GetExceptionResponse(response);
             }

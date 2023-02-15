@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using SW.Services.Cancellation;
+﻿using SW.Services.Cancellation;
+using System.Text.Json;
 
 namespace SW.Helpers
 {
@@ -21,7 +21,7 @@ namespace SW.Helpers
                 b64Pfx = Convert.ToBase64String(pfx ?? Array.Empty<byte>()),
                 password,
             };
-            return JsonConvert.SerializeObject(body);
+            return JsonSerializer.Serialize(body);
         }
         /// <summary>
         /// Serialize the pdf request to a JSON string.
@@ -35,7 +35,7 @@ namespace SW.Helpers
                 extras,
                 logo
             };
-            return JsonConvert.SerializeObject(body);
+            return JsonSerializer.Serialize(body);
         }
         /// <summary>
         /// Serialize the resend request to a JSON string.
@@ -47,7 +47,7 @@ namespace SW.Helpers
                 uuid = uuid.ToString(),
                 to = String.Join(',', email).Trim()
             };
-            return JsonConvert.SerializeObject(body);
+            return JsonSerializer.Serialize(body);
         }
     }
 }
