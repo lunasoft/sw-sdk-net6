@@ -16,9 +16,8 @@ namespace SW.Services.Authentication
         {
             try
             {
-                var headers = RequestHelper.SetupHeaders(User, Password);
-                var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return await _handler.PostAsync(Url, _path, headers, proxy);
+                var request = RequestHelper.SetupRequest(this, User, Password);
+                return await _handler.PostAsync(Url, _path, request);
             }
             catch(Exception e)
             {

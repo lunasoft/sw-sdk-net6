@@ -23,7 +23,7 @@ namespace SW.Services.IssueJson
             try
             {
                 var request = await IssueJsonServiceAsync(version, StampResponseVersion.V1, _path, customId, email, pdf);
-                return await handler.PostAsync(Url, request.Path, request.Headers, request.Proxy, json, _contentType);
+                return await handler.PostAsync(Url, request.Path, request, json, _contentType);
             }
             catch(Exception ex)
             {
@@ -36,7 +36,7 @@ namespace SW.Services.IssueJson
             try
             {
                 var request = await IssueJsonServiceAsync(version, StampResponseVersion.V2, _path, customId, email, pdf);
-                return await handler.PostAsync(Url, request.Path, request.Headers, request.Proxy, json, _contentType);
+                return await handler.PostAsync(Url, request.Path, request, json, _contentType);
             }
             catch (Exception ex)
             {
@@ -49,7 +49,7 @@ namespace SW.Services.IssueJson
             try
             {
                 var request = await IssueJsonServiceAsync(version, StampResponseVersion.V3, _path, customId, email, pdf);
-                return await handler.PostAsync(Url, request.Path, request.Headers, request.Proxy, json, _contentType);
+                return await handler.PostAsync(Url, request.Path, request, json, _contentType);
             }
             catch (Exception ex)
             {
@@ -62,7 +62,7 @@ namespace SW.Services.IssueJson
             try
             {
                 var request = await IssueJsonServiceAsync(version, StampResponseVersion.V4, _path, customId, email, pdf);
-                return await handler.PostAsync(Url, request.Path, request.Headers, request.Proxy, json, _contentType);
+                return await handler.PostAsync(Url, request.Path, request, json, _contentType);
             }
             catch (Exception ex)
             {
@@ -71,16 +71,21 @@ namespace SW.Services.IssueJson
         }
         private async Task<Request> IssueJsonServiceAsync(StampVersion stampVersion, StampResponseVersion responseVersion, string path, string customId, string[] email, bool pdf)
         {
-            var request = await RequestHelper.SetupRequestAsync(this);
-            request.Path = String.Format("{0}/{1}/{2}", stampVersion, path, responseVersion);
+            Request request;
             if (stampVersion.Equals(StampVersion.V4))
             {
                 if (!ValidationHelper.ValidateCustomHeaders(customId, email, out string message))
                 {
                     throw new Exception(message);
                 }
-                request.Headers = RequestHelper.SetupHeaders(request.Headers, customId, email, pdf);
+                request = await RequestHelper.SetupRequestAsync(this, customId, email, pdf);
             }
+            else
+            {
+                request = await RequestHelper.SetupRequestAsync(this);
+            }
+            
+            request.Path = String.Format("{0}/{1}/{2}", stampVersion, path, responseVersion);
             return request;
         }
     }
