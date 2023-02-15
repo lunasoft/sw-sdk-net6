@@ -5,57 +5,55 @@ namespace SW.Helpers
 {
     internal class RequestHelper
     {
+        internal static Request SetupRequest(Services.Services services, string user, string password)
+        {
+            return new()
+            {
+                Headers = new() { { "user", user }, { "password", password } },
+                Proxy = SetProxy(services.Proxy, services.ProxyPort)
+            };
+        }
         internal static async Task<Request> SetupRequestAsync(Services.Services services)
         {
-            Request request = new()
+            return new()
             {
-                Headers = await SetupAuthHeaderAsync(services),
-                Proxy = ProxySettings(services.Proxy, services.ProxyPort)
+                Headers = await SetAuthenticationAsync(services),
+                Proxy = SetProxy(services.Proxy, services.ProxyPort)
             };
-            return request;
         }
-        internal static HttpClientHandler ProxySettings(string proxy, int proxyPort)
+        internal static async Task<Request> SetupRequestAsync(Services.Services services, string customId, string[] emails = null, bool pdf = false)
         {
-            if (!string.IsNullOrEmpty(proxy))
+            var headers = await SetAuthenticationAsync(services);
+            headers.Add("customid", customId);
+            if (emails != null)
             {
-                HttpClientHandler httpClientHandler = new ()
-                {
-                    Proxy = new WebProxy(string.Format("{0}:{1}", proxy, proxyPort), false),
-                    UseProxy = true
-                };
-                return httpClientHandler;
-            }
-            else
-            {
-                return new HttpClientHandler();
-            }
-        }
-        internal static async Task<Dictionary<string, string>> SetupAuthHeaderAsync(Services.Services services)
-        {
-            var setup = await services.SetupAuthAsync();
-            Dictionary<string, string> headers = new()
-            {
-                { "Authorization", "bearer " + setup.Token }
-            };
-            return headers;
-        }
-        internal static Dictionary<string, string> SetupHeaders(Dictionary<string, string> headers, string customId = null, string[] emails = null, bool pdf = false)
-        {
-            if(customId != null)
-            {
-                headers.Add("customid", customId);
-            }
-            if(emails != null)
-            {
-                var emailHeader = String.Join(',', emails).Trim();
-                headers.Add("email", emailHeader);
+                headers.Add("email", String.Join(',', emails).Trim());
             }
             if (pdf)
             {
                 headers.Add("pdf", String.Empty);
             }
-            return headers;
+            return new()
+            {
+                Headers = headers,
+                Proxy = SetProxy(services.Proxy, services.ProxyPort)
+            };
         }
-        internal static Dictionary<string, string> SetupHeaders(string user, string password) => new() { { "user", user }, { "password", password } };
+        private static HttpClientHandler SetProxy(string proxy, int proxyPort)
+        {
+            return !string.IsNullOrEmpty(proxy) ? new() 
+            {
+                Proxy = new WebProxy(string.Format("{0}:{1}", proxy, proxyPort), false),
+                UseProxy = true
+            } : new();
+        }
+        private static async Task<Dictionary<string, string>> SetAuthenticationAsync(Services.Services services)
+        {
+            var setup = await services.SetupAuthAsync();
+            return new()
+            {
+                { "Authorization", "bearer " + setup.Token }
+            };
+        }
     }
 }
