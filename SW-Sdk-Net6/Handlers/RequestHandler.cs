@@ -1,4 +1,5 @@
 ﻿using SW.Entities;
+using SW.Helpers;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -63,9 +64,9 @@ namespace SW.Handlers
         /// <param name="headers">Headers.</param>
         /// <param name="proxy">Proxy settings.</param>
         /// <returns></returns>
-        internal async Task<T> PostAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy)
+        internal async Task<T> PostAsync(string url, string path, Request request)
         {
-            return await PostResponseAsync(url, path, headers, proxy);
+            return await PostResponseAsync(url, path, request.Headers, request.Proxy);
         }
         /// <summary>
         /// POST JSON, accepts custom Content-Type.
@@ -77,10 +78,10 @@ namespace SW.Handlers
         /// <param name="content">Json String.</param>
         /// <param name="contentType">Custom Content-Type, default: application/json</param>
         /// <returns></returns>
-        internal async Task<T> PostAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy, string content, string contentType = null)
+        internal async Task<T> PostAsync(string url, string path, Request request, string content, string contentType = null)
         {
             var setContent = new StringContent(content, Encoding.UTF8, contentType ?? Application.Json);
-            return await PostResponseAsync(url, path, headers, proxy, setContent);
+            return await PostResponseAsync(url, path, request.Headers, request.Proxy, setContent);
         }
         /// <summary>
         /// POST Multipart Form.
@@ -91,12 +92,12 @@ namespace SW.Handlers
         /// <param name="proxy">Proxy settings.</param>
         /// <param name="content">File Bytes.</param>
         /// <returns></returns>
-        internal async Task<T> PostAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy, byte[] content)
+        internal async Task<T> PostAsync(string url, string path, Request request, byte[] content)
         {
             var setContent = new MultipartFormDataContent();
             var data = new ByteArrayContent(content);
             setContent.Add(data, "xml", "xml");
-            return await PostResponseAsync(url, path, headers, proxy, setContent);
+            return await PostResponseAsync(url, path, request.Headers, request.Proxy, setContent);
         }
         /// <summary>
         /// GET
@@ -106,9 +107,9 @@ namespace SW.Handlers
         /// <param name="headers">Headers.</param>
         /// <param name="proxy">Proxy settings.</param>
         /// <returns></returns>
-        internal async Task<T> GetAsync(string url, string path, Dictionary<string, string> headers, HttpClientHandler proxy)
+        internal async Task<T> GetAsync(string url, string path, Request request)
         {
-            return await GetResponseAsync(url, path, headers, proxy);
+            return await GetResponseAsync(url, path, request.Headers, request.Proxy);
         }
         internal T HandleException(Exception ex)
         {

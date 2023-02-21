@@ -23,11 +23,10 @@ namespace SW.Services.Cancellation
             {
                 if(!ValidationHelper.ValidateCancellationRequest(folio, out string message))
                     throw new Exception(message);
-                var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
+                var request = await RequestHelper.SetupRequestAsync(this);
                 string path = String.Format("{0}/{1}/{2}/{3}/{4}", _path, folio.Rfc, folio.Uuid.ToString(), folio.Motivo,
                     folio.FolioSustitucion != null ? folio.FolioSustitucion.ToString() : String.Empty);
-                return await _handler.PostAsync(this.Url, path, headers, proxy);
+                return await _handler.PostAsync(this.Url, path, request);
             }
             catch (Exception ex)
             {
@@ -40,10 +39,9 @@ namespace SW.Services.Cancellation
             {
                 if (!ValidationHelper.ValidateCancellationRequest(folio, out string message))
                     throw new Exception(message);
-                var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
+                var request = await RequestHelper.SetupRequestAsync(this);
                 string path = String.Format("{0}/{1}", _path, "csd");
-                return await _handler.PostAsync(this.Url, path, headers, proxy, JsonBodyHelper.SerializeCancellation(folio, password, cer, key, null));
+                return await _handler.PostAsync(this.Url, path, request, JsonBodyHelper.SerializeCancellation(folio, password, cer, key, null));
             }
             catch (Exception ex)
             {
@@ -56,10 +54,9 @@ namespace SW.Services.Cancellation
             {
                 if (!ValidationHelper.ValidateCancellationRequest(folio, out string message))
                     throw new Exception(message);
-                var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
+                var request = await RequestHelper.SetupRequestAsync(this);
                 string path = String.Format("{0}/{1}", _path, "pfx");
-                return await _handler.PostAsync(this.Url, path, headers, proxy, JsonBodyHelper.SerializeCancellation(folio, password, null, null, pfx));
+                return await _handler.PostAsync(this.Url, path, request, JsonBodyHelper.SerializeCancellation(folio, password, null, null, pfx));
             }
             catch (Exception ex)
             {
@@ -70,10 +67,9 @@ namespace SW.Services.Cancellation
         {
             try
             {
-                var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
+                var request = await RequestHelper.SetupRequestAsync(this);
                 string path = String.Format("{0}/{1}", _path, "xml");
-                return await _handler.PostAsync(this.Url, path, headers, proxy, xml);
+                return await _handler.PostAsync(this.Url, path, request, xml);
             }
             catch (Exception ex)
             {

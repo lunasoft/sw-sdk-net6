@@ -1,5 +1,4 @@
 ﻿using SW.Entities;
-using System.Runtime.Serialization;
 
 namespace SW.Services.Authentication
 {

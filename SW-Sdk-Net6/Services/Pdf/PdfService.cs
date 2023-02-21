@@ -22,11 +22,10 @@ namespace SW.Services.Pdf
         {
             try
             {
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
-                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                var request = await RequestHelper.SetupRequestAsync(this);
                 var content = JsonBodyHelper.SerializePdf(!isB64 ? xml : xml.ConvertFromB64(), template, extras, logo); ; ;
                 var path = String.Format("{0}/{1}", _path, "GeneratePdf");
-                return await _handler.PostAsync(UrlApi ?? Url, path, headers, proxy, content);
+                return await _handler.PostAsync(UrlApi ?? Url, path, request, content);
             }
             catch(Exception ex)
             {
@@ -37,10 +36,9 @@ namespace SW.Services.Pdf
         {
             try
             {
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
-                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                var request = await RequestHelper.SetupRequestAsync(this);
                 var path = String.Format("{0}/{1}/{2}", _path, "regeneratepdf", uuid.ToString());
-                return await _handler.PostAsync(UrlApi ?? Url, path, headers, proxy);
+                return await _handler.PostAsync(UrlApi ?? Url, path, request);
             }
             catch(Exception ex)
             {

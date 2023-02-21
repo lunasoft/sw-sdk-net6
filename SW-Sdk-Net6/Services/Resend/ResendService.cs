@@ -25,10 +25,9 @@ namespace SW.Services.Resend
                 {
                     throw new Exception("El listado de correos no tiene un formato válido o contiene mas de 5 correos.");
                 }
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
-                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                var request = await RequestHelper.SetupRequestAsync(this);
                 var content = JsonBodyHelper.SerializeResend(uuid, email);
-                return await _handler.PostAsync(UrlApi ?? Url, "comprobante/resendemail", headers, proxy, content);
+                return await _handler.PostAsync(UrlApi ?? Url, "comprobante/resendemail", request, content);
             }
             catch(Exception ex)
             {

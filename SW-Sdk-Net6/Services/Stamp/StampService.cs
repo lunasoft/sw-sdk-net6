@@ -21,7 +21,7 @@ namespace SW.Services.Stamp
             try
             {
                 var request = await StampServiceAsync(action, stampVersion, StampResponseVersion.V1, _path, isB64, customId, email, pdf);
-                return await handler.PostAsync(Url, request.Path, request.Headers, request.Proxy, xml);
+                return await handler.PostAsync(Url, request.Path, request, xml);
             }
             catch (Exception ex)
             {
@@ -34,7 +34,7 @@ namespace SW.Services.Stamp
             try
             {
                 var request = await StampServiceAsync(action, stampVersion, StampResponseVersion.V2, _path, isB64, customId, email, pdf);
-                return await handler.PostAsync(Url, request.Path, request.Headers, request.Proxy, xml);
+                return await handler.PostAsync(Url, request.Path, request, xml);
             }
             catch (Exception ex)
             {
@@ -47,7 +47,7 @@ namespace SW.Services.Stamp
             try
             {
                 var request = await StampServiceAsync(action, stampVersion, StampResponseVersion.V3, _path, isB64, customId, email, pdf);
-                return await handler.PostAsync(Url, request.Path, request.Headers, request.Proxy, xml);
+                return await handler.PostAsync(Url, request.Path, request, xml);
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace SW.Services.Stamp
             try
             {
                 var request = await StampServiceAsync(action, stampVersion, StampResponseVersion.V4, _path, isB64, customId, email, pdf);
-                return await handler.PostAsync(Url, request.Path, request.Headers, request.Proxy, xml);
+                return await handler.PostAsync(Url, request.Path, request, xml);
             }
             catch (Exception ex)
             {
@@ -69,7 +69,7 @@ namespace SW.Services.Stamp
         }
         private async Task<Request> StampServiceAsync(StampAction action, StampVersion stampVersion, StampResponseVersion responseVersion, string path, bool isB64, string customId, string[] email, bool pdf)
         {
-            var request = await RequestHelper.SetupRequestAsync(this);
+            var request = await RequestHelper.SetupRequestAsync(this, customId, email, pdf);
             request.Path = String.Format("{0}/{1}/{2}/{3}", path, action, responseVersion, isB64 ? "b64" : String.Empty);
             if (stampVersion.Equals(StampVersion.V4))
             {
@@ -77,7 +77,6 @@ namespace SW.Services.Stamp
                 {
                     throw new Exception(message);
                 }
-                request.Headers = RequestHelper.SetupHeaders(request.Headers, customId, email, pdf);
                 request.Path = String.Format("{0}/{1}", stampVersion, request.Path);
             }
             return request;

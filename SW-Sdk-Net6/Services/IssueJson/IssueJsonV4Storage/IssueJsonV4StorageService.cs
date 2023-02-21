@@ -25,20 +25,18 @@ namespace SW.Services.IssueJson
             try
             {
                 string path = String.Format("{0}/{1}", _path, StampResponseVersion.V2);
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
                 if (!ValidationHelper.ValidateCustomHeaders(customId, email, out string message))
                 {
                     throw new Exception(message);
                 }
-                headers = RequestHelper.SetupHeaders(headers, customId, email);
-                var proxy = RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                var response = await handler.PostAsync(Url, path, headers, proxy, json, _contentType);
+                var request = await RequestHelper.SetupRequestAsync(this, customId, email, pdf);
+                var response = await handler.PostAsync(Url, path, request, json, _contentType);
                 if (response.Status.Equals("error") && response.Message.Equals("CFDI3307 - Timbre duplicado. El customId proporcionado está duplicado.")
                     && String.IsNullOrEmpty(response.Data.Cfdi) && ConvertionHelper.TryGetUuid(response.Data.Tfd, out Guid uuid))
                 {
                     Storage.Storage storage = new(_urlApi, Token, ProxyPort, Proxy);
                     var result = await storage.GetXmlAsync(uuid);
-                    return await ConvertionHelper.ToStampResponseV2(response, result, proxy);
+                    return await ConvertionHelper.ToStampResponseV2(response, result, request.Proxy);
                 }
                 return response;
             }

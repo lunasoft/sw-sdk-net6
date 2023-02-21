@@ -19,10 +19,9 @@ namespace SW.Services.Storage
             StorageRequestHandler handler = new();
             try
             {
-                var proxy = RequestHelper.ProxySettings(Proxy, this.ProxyPort);
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
+                var request = await RequestHelper.SetupRequestAsync(this);
                 var path = String.Format("{0}/{1}", _path, uuid.ToString());
-                return await handler.GetResponseAsync(UrlApi ?? Url, path, headers, proxy);
+                return await handler.GetResponseAsync(UrlApi ?? Url, path, request);
             }
             catch(Exception ex)
             {
@@ -34,10 +33,9 @@ namespace SW.Services.Storage
             StorageExtraRequestHandler handler = new();
             try
             {
-                var proxy = RequestHelper.ProxySettings(Proxy, this.ProxyPort);
-                var headers = await RequestHelper.SetupAuthHeaderAsync(this);
+                var request = await RequestHelper.SetupRequestAsync(this);
                 var path = String.Format("{0}/{1}", _path, uuid.ToString());
-                return await handler.GetResponseAsync(UrlApi ?? Url, path, headers, proxy);
+                return await handler.GetResponseAsync(UrlApi ?? Url, path, request);
             }
             catch (Exception ex)
             {
