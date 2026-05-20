@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
   	  <AssemblyName>SW-sdk-Net6</AssemblyName>
-      <VersionPrefix>0.0.10.1</VersionPrefix>
+      <VersionPrefix>0.0.11.1</VersionPrefix>
       <TargetFramework>net6.0</TargetFramework>
       <RootNamespace>SW</RootNamespace>
       <ImplicitUsings>enable</ImplicitUsings>
@@ -17,7 +17,7 @@
 	  <RepositoryBranch>Master</RepositoryBranch>
 	  <Copyright>Copyright SW sapien®</Copyright>
 	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-	  <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <PackageIconUrl>https://sw.com.mx/images/logo.png</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
